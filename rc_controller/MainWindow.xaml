@@ -440,7 +440,7 @@
                     </Label.Effect>
                 </Label>
             </Canvas>
-            
+
             <Canvas Grid.Column="1" Margin="0,30,30,30">
                 <Border Width="330"
                         Height="710"
@@ -477,5 +477,124 @@
                 </Border>
             </Canvas>
         </Grid>
+        <Image Height="769" Canvas.Left="31" Width="736" Source="/Screenshot 2025-10-27 192954.png" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="20"/>
+        <Image Height="717" Canvas.Left="230" Canvas.Top="20" Width="941" Source="/Screenshot 2025-10-27 192954.png"/>
+
+        <Border Background="#AA000000"
+            CornerRadius="20"
+            BorderBrush="Cyan"
+            BorderThickness="3"
+            Padding="25"
+            Width="450"
+            Height="400"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Panel.ZIndex="2" Canvas.Left="250" Canvas.Top="60">
+
+            <StackPanel>
+                <TextBlock Text="SENSOR READINGS"
+                   FontSize="30"
+                   Foreground="Cyan"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   Margin="0,0,0,25"/>
+
+                <!-- Battery -->
+                <TextBlock Text="Battery Voltage:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
+                <ProgressBar x:Name="BatteryBar"
+                     Minimum="0" Maximum="8.4"
+                     Height="35"
+                     Foreground="Lime"/>
+                <TextBlock x:Name="VoltageText"
+                   Text="0V"
+                   FontSize="24"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,5,0,20"/>
+
+                <!-- Soil Moisture -->
+                <TextBlock Text="Soil Moisture:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
+                <ProgressBar x:Name="MoistureBar"
+                     Minimum="0" Maximum="100"
+                     Height="35"
+                     Foreground="DodgerBlue"/>
+                <TextBlock x:Name="MoistureText"
+                   Text="0%"
+                   FontSize="24"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,5,0,20"/>
+
+                <!-- Temperature -->
+                <TextBlock Text="Temperature:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
+                <TextBlock x:Name="TempText"
+                   Text="0°C"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="Orange"
+                   Margin="0,5,0,20"/>
+
+                <!-- Humidity -->
+                <TextBlock Text="Humidity:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
+                <TextBlock x:Name="HumidityText"
+                   Text="0%"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="LightBlue"/>
+            </StackPanel>
+        </Border>
+        <!-- ==================== SERVO CONTROL SECTION ==================== -->
+        <Border Background="#AA000000"
+        CornerRadius="10"
+        BorderBrush="Cyan"
+        BorderThickness="2"
+        Padding="10" Canvas.Left="728" Canvas.Top="83">
+            <StackPanel>
+                <TextBlock Text="SERVO CONTROL"
+                   FontSize="20"
+                   Foreground="Cyan"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+                <!-- Servo 1 -->
+                <TextBlock Text="Servo 1" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
+                    <Button x:Name="Servo1Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo1Plus_Click"/>
+                    <Button x:Name="Servo1Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo1Minus_Click"/>
+                </StackPanel>
+
+                <!-- Servo 2 -->
+                <TextBlock Text="Servo 2" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
+                    <Button x:Name="Servo2Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo2Plus_Click"/>
+                    <Button x:Name="Servo2Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo2Minus_Click"/>
+                </StackPanel>
+
+                <!-- Servo 3 -->
+                <TextBlock Text="Servo 3" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
+                    <Button x:Name="Servo3Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo3Plus_Click"/>
+                    <Button x:Name="Servo3Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo3Minus_Click"/>
+                </StackPanel>
+
+                <!-- Measure Button -->
+                <Button x:Name="MeasureBtn"
+                Content="Measure Sensors"
+                Width="200"
+                Height="50"
+                FontSize="18"
+                FontWeight="Bold"
+                Background="DodgerBlue"
+                Foreground="White"
+                Click="MeasureBtn_Click"
+                Margin="0,15,0,0"/>
+            </StackPanel>
+        </Border>
+
+
+
+
+
     </Canvas>
 </Window>
