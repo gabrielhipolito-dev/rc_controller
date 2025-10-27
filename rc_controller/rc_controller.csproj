@@ -55,6 +55,7 @@
     <None Remove="Images\rright_3.png" />
     <None Remove="Images\screen.png" />
     <None Remove="Images\tgbtnmd.png" />
+    <None Remove="Screenshot 2025-10-27 192954.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -200,6 +201,7 @@
     <Resource Include="Images\tgbtnmd.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Screenshot 2025-10-27 192954.png" />
   </ItemGroup>
 
 </Project>

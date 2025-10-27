@@ -20,6 +20,7 @@ namespace rc_controller
         {
             InitializeComponent();
             InitializeSerialPort();
+            InitializeSensorReading();
         }
 
         private void InitializeSerialPort()
@@ -465,6 +466,122 @@ namespace rc_controller
                 typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
             }
         }
+        // ==========================================================
+        // 🔋 SENSOR DATA READING SECTION (Battery, Soil, Temp, Humidity)
+        // ==========================================================
+        private void InitializeSensorReading()
+        {
+            try
+            {
+                if (!_serialPort.IsOpen)
+                    _serialPort.Open();
+
+                _serialPort.DataReceived += SensorDataReceived;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to open serial port for sensors: " + ex.Message);
+            }
+        }
+
+        private void SensorDataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                // Read a line from Arduino (format: 8.1,85,30,60)
+                string data = _serialPort.ReadLine().Trim();
+                string[] values = data.Split(',');
+
+                if (values.Length == 4)
+                {
+                    double voltage = double.Parse(values[0]);
+                    int soil = int.Parse(values[1]);
+                    double temp = double.Parse(values[2]);
+                    double humidity = double.Parse(values[3]);
+
+                    // Update UI safely
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (BatteryBar != null)
+                        {
+                            BatteryBar.Value = voltage;
+                            VoltageText.Text = $"{voltage:F2} V";
+                        }
+
+                        if (MoistureBar != null)
+                        {
+                            MoistureBar.Value = soil;
+                            MoistureText.Text = $"{soil}%";
+                        }
+
+                        if (TempText != null)
+                            TempText.Text = $"{temp:F1} °C";
+
+                        if (HumidityText != null)
+                            HumidityText.Text = $"{humidity:F1}%";
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Sensor read error: " + ex.Message);
+            }
+        }
+
+        // ==========================================================
+        // 🎮 SERVO CONTROL SECTION (Three Servos + Measure Button)
+        // ==========================================================
+        private void Servo1Plus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S1+"); }
+            catch (Exception ex) { Debug.WriteLine("Servo1+ error: " + ex.Message); }
+        }
+
+        private void Servo1Minus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S1-"); }
+            catch (Exception ex) { Debug.WriteLine("Servo1- error: " + ex.Message); }
+        }
+
+        private void Servo2Plus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S2+"); }
+            catch (Exception ex) { Debug.WriteLine("Servo2+ error: " + ex.Message); }
+        }
+
+        private void Servo2Minus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S2-"); }
+            catch (Exception ex) { Debug.WriteLine("Servo2- error: " + ex.Message); }
+        }
+
+        private void Servo3Plus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S3+"); }
+            catch (Exception ex) { Debug.WriteLine("Servo3+ error: " + ex.Message); }
+        }
+
+        private void Servo3Minus_Click(object sender, RoutedEventArgs e)
+        {
+            try { _serialPort.Write("S3-"); }
+            catch (Exception ex) { Debug.WriteLine("Servo3- error: " + ex.Message); }
+        }
+
+        // Measure button → requests latest sensor data
+        private void MeasureBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _serialPort.Write("M");  // Arduino will respond with latest sensor data
+                labelControl.Content = "Measuring sensors...";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send measure command: " + ex.Message);
+            }
+        }
+
+
 
         // Add more event handlers for additional buttons here
     }
