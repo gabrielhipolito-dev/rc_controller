@@ -1,0 +1,481 @@
+﻿<Window x:Class="rc_controller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:rc_controller"
+        mc:Ignorable="d"  
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
+        Height="{x:Static SystemParameters.PrimaryScreenHeight}"  
+        Title="MainWindow" 
+        Background="#011B40"
+        WindowState="Maximized"
+        KeyUp="key_released"
+        KeyDown="key_pressed">
+    <Window.Resources>
+        <!-- Custom style for vertical scrollbar -->
+        <Style x:Key="CustomVerticalScrollBar" TargetType="ScrollBar">
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+    </Window.Resources>
+
+    <Canvas Margin="40">
+        <Canvas.Background>
+            <ImageBrush ImageSource="\Images\bg_2.png" />
+        </Canvas.Background>
+
+        <Grid ShowGridLines="True" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1100"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Canvas Grid.Column="0"
+                    Margin="30">
+                <Border BorderThickness="5"
+                        CornerRadius="15"
+                        BorderBrush="Aqua"
+                        MaxWidth="1100"
+                        MaxHeight="710"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                    <Image Source="\Images\bg_grid1.png"/>
+                </Border>
+
+                <Image Source="\Images\control_3.png"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       MaxHeight="710"
+                       Stretch="Uniform" Width="1129" Canvas.Left="6"/>
+
+                <Button Name="forward_r" Height="75"
+                        Width="75"
+                        Background="Transparent" 
+                        Content="Forward Right"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+
+                    <Button.Template>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\fright_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="385,133,-1107,-126"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="ButtonImage"
+                                            Property="Source"
+                                            Value="\Images\fright_2.png"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Button.Template>
+
+                </Button>
+
+
+                <Button Name="forward_l" Height="75"
+                        Width="75"
+                        Background="Transparent"
+                        Content="Forward Left"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+
+                    <Button.Template>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\fleft_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="334,133,-965,-126" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="ButtonImage"
+                                            Property="Source"
+                                            Value="\Images\fleft_2.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Name="backward_l" Height="70"
+                        Width="70"
+                        Background="Transparent"
+                        Content="Backward Left"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\rleft_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="334,227,-965,-227" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage"
+                                            Property="Source"
+                                            Value="\Images\rleft_2.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Name="backward_r" Height="70"
+                        Width="70"
+                        Background="Transparent"
+                        Content="Backward Right"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\rright_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="385,229,-1107,-229" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rright_2.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Name="forward_click" 
+                        Height="110" 
+                        Width="110"
+                        Background="Transparent"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Content="Forward"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+
+                    <Button.Template>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\forward_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="97,115,-313,-94"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Button.Template>
+
+                </Button>
+
+                <ToggleButton Name="forward_toggle" 
+                              Height="110" 
+                              Width="110" 
+                              Background="Transparent"
+                              Checked="ToggleButton_Checked"
+                              Unchecked="ToggleButton_Unchecked">
+
+                    <ToggleButton.Template>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\forward_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="97,115,-313,-94"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_1.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
+
+
+                <Button Name="backward_click" 
+                        Height="110" 
+                        Width="110" 
+                        Background="Transparent"  
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Content="Backward"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+
+                    <Button.Template>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\rev_1.png"
+                                       x:Name="ButtonImage"  
+                                       Margin="98,230,-314,-209"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Button.Template>
+
+                </Button>
+
+                <ToggleButton Name="backward_toggle" 
+                              Height="110" 
+                              Width="110" 
+                              Background="Transparent"
+                              Checked="ToggleButton_Checked"
+                              Unchecked="ToggleButton_Unchecked">
+
+                    <ToggleButton.Template>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\rev_1.png"
+                                      x:Name="ButtonImage"
+                                      Margin="98,230,-314,-209"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_1.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
+
+                <Button Name="steer_l" Height="80"
+                        Width="80"
+                        Background="Transparent"
+                        Content="Left"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\left_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="63,190,-256,-168" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\left_2.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Name="steer_r" Height="80"
+                        Width="80"
+                        Background="Transparent"
+                        Content="Right"
+                        PreviewMouseLeftButtonDown="Button_Pressed"
+                        PreviewMouseLeftButtonUp="Button_Unpressed">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image Source="\Images\right_1.png"
+                                       x:Name="ButtonImage"
+                                       Margin="133,190,-442,-168"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\right_2.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <ToggleButton Name="headlight" Height="105"
+                              Width="105"
+                              Background="Transparent"
+                              Checked="Headlight_Checked"
+                              Unchecked="Headlight_Unchecked">
+                    <ToggleButton.Template>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image x:Name="ButtonImage"
+                                       Margin="237,318,-661,-274"
+                                       Source="\Images\headlight_1.png"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_1.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
+
+                <ToggleButton Name="mode" 
+                              Height="105" 
+                              Width="105" 
+                              Background="Transparent"
+                              Checked="Mode_Checked"
+                              Unchecked="Mode_Unchecked">
+                    <ToggleButton.Template>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Background="{TemplateBinding Background}">
+
+                                <Image x:Name="ButtonImage"
+                                       Source="\Images\m1.png"
+                                       Margin="164,83,-462,-42" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m2.png"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m1.png"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
+
+
+
+                <Image Source="\Images\screen.png" Stretch="Fill" Canvas.Left="401" Canvas.Top="122" HorizontalAlignment="Center" VerticalAlignment="Top" Width="192" Height="108"/>
+                <Label x:Name ="labelControl" Content="RC CONTROLLER" Height="76" Canvas.Left="417" Canvas.Top="138" Width="161" Foreground="White" FontFamily="ISOCTEUR" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect Color="White" BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="1"/>
+                    </Label.Effect>
+                </Label>
+            </Canvas>
+            
+            <Canvas Grid.Column="1" Margin="0,30,30,30">
+                <Border Width="330"
+                        Height="710"
+                        CornerRadius="15,15,15,15"
+                        BorderThickness="5"
+                        BorderBrush="Aqua">
+                    <Border.Background>
+                        <ImageBrush ImageSource="\Images\pix_2.png"/>
+                    </Border.Background>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                                  PanningMode="VerticalOnly">
+
+                        <StackPanel Margin="10">
+                            <Image Source="\Images\tgbtnmd.png"/>
+                            <Image Source="\Images\normbtnmd.png"/>
+                            <Image Source="\Images\fright_3.png"/>
+                            <Image Source="\Images\fleft_3.png"/>
+                            <Image Source="\Images\rright_3.png"/>
+                            <Image Source="\Images\rleft_3.png"/>
+                            <Image Source="\Images\forward_3.png"/>
+                            <Image Source="\Images\rev_3.png"/>
+                            <Image Source="\Images\right_3.png"/>
+                            <Image Source="\Images\left_3.png"/>
+                            <Image Source="\Images\headlight_4.png"/>
+                            <Image Source="\Images\headlight_3.png"/>
+                            <Image Source="\Images\tgbtnmd.png"/>
+                            <Image Source="\Images\tgbtnmd.png"/>
+
+
+                        </StackPanel>
+
+
+                    </ScrollViewer>
+                </Border>
+            </Canvas>
+        </Grid>
+    </Canvas>
+</Window>
