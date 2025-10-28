@@ -8,80 +8,116 @@
 
         <!-- FORWARD button -->
         <Button Content="FORWARD" Width="150" Height="80" FontSize="22"
-                Canvas.Left="225" Canvas.Top="103"
+                Canvas.Left="214" Canvas.Top="278"
                 PreviewMouseLeftButtonDown="ButtonForward_Pressed"
-                PreviewMouseLeftButtonUp="ButtonForward_Released"/>
+                PreviewMouseLeftButtonUp="ButtonForward_Released" RenderTransformOrigin="0.367,2.341" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- BACKWARD button -->
         <Button Content="BACKWARD" Width="150" Height="80" FontSize="22"
-                Canvas.Left="225" Canvas.Top="358"
+                Canvas.Left="214" Canvas.Top="503"
                 PreviewMouseLeftButtonDown="ButtonBackward_Pressed"
-                PreviewMouseLeftButtonUp="ButtonBackward_Released"/>
+                PreviewMouseLeftButtonUp="ButtonBackward_Released" RenderTransformOrigin="1.216,0.486" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- LEFT button -->
         <Button Content="LEFT" Width="150" Height="80" FontSize="22"
-                Canvas.Left="65" Canvas.Top="219"
+                Canvas.Left="65" Canvas.Top="393"
                 PreviewMouseLeftButtonDown="ButtonLeft_Pressed"
-                PreviewMouseLeftButtonUp="ButtonLeft_Released"/>
+                PreviewMouseLeftButtonUp="ButtonLeft_Released" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- RIGHT button -->
         <Button Content="RIGHT" Width="150" Height="80" FontSize="22"
-                Canvas.Left="388" Canvas.Top="219"
+                Canvas.Left="374" Canvas.Top="393"
                 PreviewMouseLeftButtonDown="ButtonRight_Pressed"
-                PreviewMouseLeftButtonUp="ButtonRight_Released"/>
-        <Button Content="RIGHT" Width="150" Height="80" FontSize="22"
-            Canvas.Left="388" Canvas.Top="219"
-            PreviewMouseLeftButtonDown="ButtonRight_Pressed"
-            PreviewMouseLeftButtonUp="ButtonRight_Released" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="M-" Canvas.Left="685" Canvas.Top="365" Height="56" Width="76" Click="mMinus" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Content="M+" Canvas.Left="846" Canvas.Top="365" Height="56" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top" Click="mPlus"/>
+                PreviewMouseLeftButtonUp="ButtonRight_Released" RenderTransformOrigin="0.245,1.386" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <Button Content="M-" Canvas.Left="65" Canvas.Top="618" Height="56" Width="76" Click="mMinus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="M+" Canvas.Left="177" Canvas.Top="618" Height="56" Width="76" HorizontalAlignment="Left" VerticalAlignment="Center" Click="mPlus" RenderTransformOrigin="0.461,0.451" FontSize="20"/>
+
         <TextBox x:Name="DebugTextBox"
-         Canvas.Left="685"
-         Canvas.Top="143"
+         Canvas.Left="846"
+         Canvas.Top="55"
          Width="237"
          Height="40"
          TextWrapping="Wrap"
          IsReadOnly="True"
-         Text="Waiting for data..." HorizontalAlignment="Center" VerticalAlignment="Top" />
+         Text="Waiting for data..." HorizontalAlignment="Left" VerticalAlignment="Top" />
 
         <!---->
         <TextBox x:Name="VoltageTextBox"
          Canvas.Left="65"
-         Canvas.Top="504"
+         Canvas.Top="35"
          Width="128"
          Height="40"
          TextWrapping="Wrap"
          IsReadOnly="True"
-         Text="Voltage : " HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="VoltageTextBox_TextChanged" />
+         Text="Voltage : " HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="VoltageTextBox_TextChanged" />
         <TextBox  x:Name="TemperatureTextBox"
-         Canvas.Left="574"
-         Canvas.Top="504"
+         Canvas.Left="633"
+         Canvas.Top="35"
          Width="128"
          Height="40"
          TextWrapping="Wrap"
          IsReadOnly="True"
-         Text="Temperature : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+         Text="Temperature : " HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBox  x:Name="HumidityTextBox"
-         Canvas.Left="403"
-         Canvas.Top="504"
+         Canvas.Left="441"
+         Canvas.Top="35"
          Width="128"
          Height="40"
          TextWrapping="Wrap"
          IsReadOnly="True"
-         Text="Humidity : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+         Text="Humidity : " HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBox  x:Name="MoistureTextBox"
-         Canvas.Left="236"
-         Canvas.Top="504"
+         Canvas.Left="247"
+         Canvas.Top="35"
          Width="128"
          Height="40"
          TextWrapping="Wrap"
          IsReadOnly="True"
          Text="Moisture : " HorizontalAlignment="Left" VerticalAlignment="Top" />
         <!---->
-        <Button Content="VOLTAGE" Canvas.Left="65" Canvas.Top="568" Height="36" Width="128" Click="VOLTAGE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Button Content="HUMIDITY" Canvas.Left="403" Canvas.Top="568" Height="36" Width="128" Click="HUMIDITY_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Content="MOISTURE" Canvas.Left="236" Canvas.Top="568" Height="36" Width="128" Click="MOISTURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="TEMPERATURE" Canvas.Left="574" Canvas.Top="568" Height="36" Width="128" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Content="VOLTAGE" Canvas.Left="65" Canvas.Top="101" Height="36" Width="128" Click="VOLTAGE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="HUMIDITY" Canvas.Left="441" Canvas.Top="101" Height="36" Width="128" Click="HUMIDITY_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="MOISTURE" Canvas.Left="247" Canvas.Top="101" Height="36" Width="128" Click="MOISTURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="TEMPERATURE" Canvas.Left="633" Canvas.Top="101" Height="36" Width="128" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <!--button for servo-->
+        
+        <!--servo 1-->
+        <Button Content="-" Canvas.Left="621" Canvas.Top="257" Height="56" Width="76" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" 
+                PreviewMouseLeftButtonDown="s1minus_press"
+                PreviewMouseLeftButtonUp="s1minus_Released"/>
+        <Button Content="+" Canvas.Left="730" Canvas.Top="257" Height="56" Width="76" RenderTransformOrigin="0.461,0.451" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40"
+                PreviewMouseLeftButtonDown="s1plus_press"
+                PreviewMouseLeftButtonUp="s1plus_Released"/>
+        <!--servo 2-->
+       
+        <Button Content="-" Canvas.Left="621" Canvas.Top="348" Height="56" Width="76" FontSize="40" 
+                PreviewMouseLeftButtonDown="s2minus_press"
+                PreviewMouseLeftButtonUp="s2minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        
+        <Button Content="+" Canvas.Left="730" Canvas.Top="348" Height="56" Width="76" RenderTransformOrigin="0.461,0.451" FontSize="40"
+         PreviewMouseLeftButtonDown="s2plus_press"
+         PreviewMouseLeftButtonUp="s2plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        
+        <!--servo 3-->
+        <Button Content="-" Canvas.Left="621" Canvas.Top="458" Height="56" Width="76" FontSize="40" 
+                PreviewMouseLeftButtonDown="s3minus_press"
+                PreviewMouseLeftButtonUp="s3minus_Released" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <Button Content="+" Canvas.Left="730" Canvas.Top="458" Height="56" Width="76" RenderTransformOrigin="0.461,0.451" FontSize="40"
+                PreviewMouseLeftButtonDown="s3plus_press"
+                PreviewMouseLeftButtonUp="s3plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <!--servo 4-->
+        
+        <Button Content="-" Canvas.Left="621" Canvas.Top="543" Height="56" Width="76" FontSize="40" 
+                PreviewMouseLeftButtonDown="s4minus_press"
+                PreviewMouseLeftButtonUp="s4minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        
+        <Button Content="+" Canvas.Left="730" Canvas.Top="538" Height="56" Width="76" RenderTransformOrigin="0.461,0.451" FontSize="40"
+                PreviewMouseLeftButtonDown="s4plus_press"
+                PreviewMouseLeftButtonUp="s4plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
 
 

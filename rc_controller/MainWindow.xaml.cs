@@ -148,6 +148,43 @@ namespace rc_controller
         private void mMinus(object sender, RoutedEventArgs e) => SendDataToArduino("z");
         private void mPlus(object sender, RoutedEventArgs e) => SendDataToArduino("c");
 
+        // servo mechanics
+        // servo 1
+        private void s1minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s1minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+
+        private void s1plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s1plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+        // servo 2
+        private void s2minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s2minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+
+        private void s2plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s2plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+        // servo 3
+        private void s3minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s3minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+
+        private void s3plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s3plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+        // servo 4
+        private void s4minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s4minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+
+        private void s4plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s4plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
+
+
+
+
+
+
         // BATERRY, TEMPERATURE, MOISTURE AND HUMIDITY READER
         private void VOLTAGE_BUTTON(object sender, RoutedEventArgs e) => SendDataToBattery("v");
 
@@ -193,5 +230,7 @@ namespace rc_controller
         {
 
         }
+
+       
     }
 }
