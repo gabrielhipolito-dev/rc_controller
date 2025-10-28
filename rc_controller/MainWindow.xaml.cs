@@ -1,588 +1,197 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.IO.Ports;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.IO.Ports;
 using System.Windows.Input;
-using System.Reflection;
+
+using System.Threading;
 
 namespace rc_controller
 {
     public partial class MainWindow : Window
     {
-        SerialPort _serialPort = new SerialPort();
-        UIElement elemUI;
-
-        char data;
-        bool click = false;
+        private SerialPort _serialPort;
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeSerialPort();
-            InitializeSensorReading();
+
+            // Set focus to window to capture key presses
+            this.Focusable = true;
+            this.KeyDown += Window_KeyDown;
+            this.KeyUp += Window_KeyUp;
         }
 
         private void InitializeSerialPort()
         {
             _serialPort = new SerialPort
             {
-                PortName = "COM18",   // Set your COM port
-                BaudRate = 9600,     // Set your baud rate
+                PortName = "COM4",   // Change to your Arduino COM port
+                BaudRate = 9600,
                 Parity = Parity.None,
                 DataBits = 8,
-                StopBits = StopBits.One,
-                //ReadTimeout = 200,
-                //WriteTimeout = 50
+                StopBits = StopBits.One
             };
 
-            _serialPort.DataReceived += new SerialDataReceivedEventHandler(Recieve);  // Add event handler for incoming data
-            //_serialPort.Open();
-        }
-        private void Recieve(object sender, SerialDataReceivedEventArgs e)
-        {
-            // Collecting the characters received to our 'buffer' (string).
-            Debug.WriteLine(_serialPort.ReadLine());
-        }
 
-        private void Button_Pressed(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Button btn = (Button)sender;
-
-            if (btn.Name == "forward_click")
-            {
-                data = 'a';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_click")
-            {
-                data = 'c';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "steer_r")
-            {
-                data = 'i';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "steer_l")
-            {
-                data = 'k';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "forward_r")
-            {
-                data = 'e';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "forward_l")
-            {
-                data = 'g';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_r")
-            {
-                data = 'g';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_l")
-            {
-                data = 'e';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            labelControl.Content = btn.Content;
-        }
-
-        private void Button_Unpressed(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Button btn = (Button)sender;
-
-            if (btn.Name == "forward_click")
-            {
-                data = 'b';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_click")
-            {
-                data = 'd';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "steer_r")
-            {
-                data = 'j';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "steer_l")
-            {
-                data = 'l';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "forward_r")
-            {
-                data = 'f';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "forward_l")
-            {
-                data = 'h';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_r")
-            {
-                data = 'h';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (btn.Name == "backward_l")
-            {
-                data = 'f';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            labelControl.Content = "RC CONTROLLER";
-        }
-
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton toggle = (ToggleButton)sender;
-
-            if (toggle.Name == "forward_toggle")
-            {
-                backward_toggle.IsChecked = false;
-                labelControl.Content = "Forward";
-
-                data = 'a';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (toggle.Name == "backward_toggle")
-            {
-                forward_toggle.IsChecked = false;
-                labelControl.Content = "Backward";
-
-                data = 'c';
-
-                _serialPort.Write(data.ToString());
-            }
-        }
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ToggleButton toggle = (ToggleButton)sender;
-
-            if (toggle.Name == "forward_toggle")
-            {
-                backward_toggle.IsChecked = false;
-
-                labelControl.Content = "Forward";
-
-                data = 'b';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            else if (toggle.Name == "backward_toggle")
-            {
-                forward_toggle.IsChecked = false;
-
-                labelControl.Content = "Backward";
-
-                data = 'd';
-
-                _serialPort.Write(data.ToString());
-            }
-
-            labelControl.Content = "RC CONTROLLER";
-        }
-
-        private void Mode_Checked(object sender, RoutedEventArgs e)
-        {
-            click = true;
-
-            forward_toggle.IsChecked = false;
-            forward_toggle.Visibility = Visibility.Hidden;
-            forward_toggle.IsEnabled = false;
-
-            backward_toggle.IsChecked = false;
-            backward_toggle.Visibility = Visibility.Hidden;
-            backward_toggle.IsEnabled = false;
-
-            forward_click.Visibility = Visibility.Visible;
-            forward_click.IsEnabled = true;
-
-            backward_click.Visibility = Visibility.Visible;
-            backward_click.IsEnabled = true;
-            labelControl.Content = "Normal Mode";
-        }
-
-        private void Mode_Unchecked(object sender, RoutedEventArgs e)
-        {
-            click = false;
-
-            forward_toggle.IsChecked = false;
-            forward_toggle.Visibility = Visibility.Visible;
-            forward_toggle.IsEnabled = true;
-
-            backward_toggle.IsChecked = false;
-            backward_toggle.Visibility = Visibility.Visible;
-            backward_toggle.IsEnabled = true;
-
-            forward_click.Visibility = Visibility.Hidden;
-            forward_click.IsEnabled = false;
-
-            backward_click.Visibility = Visibility.Hidden;
-            backward_click.IsEnabled = false;
-            labelControl.Content = "Toggle Mode";
-
-        }
-
-        private void Headlight_Unchecked(object sender, RoutedEventArgs e)
-        {
-            labelControl.Content = "Headlight OFF";
-
-            data = 'n';
-
-            _serialPort.Write(data.ToString());
-        }
-        private void Headlight_Checked(object sender, RoutedEventArgs e)
-        {
-            labelControl.Content = "Headlight ON";
-
-            data = 'm';
-
-            _serialPort.Write(data.ToString());
-        }
-
-        private void key_pressed(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.W)
-            {
-                if (click == false)
-                {
-                    ToggleButton toggle = forward_toggle;
-
-                    toggle.IsChecked = !toggle.IsChecked;
-                }
-
-                else
-                {
-                    elemUI = forward_click;
-
-                    elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                    typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-                }
-            }
-
-            else if (e.Key == Key.S)
-            {
-                if (click == false)
-                {
-                    ToggleButton toggle = backward_toggle;
-
-                    toggle.IsChecked = !toggle.IsChecked;
-                }
-
-                else
-                {
-                    elemUI = backward_click;
-
-                    elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                    typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-                }
-            }
-
-            else if (e.Key == Key.D)
-            {
-                elemUI = steer_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.A)
-            {
-                elemUI = steer_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.E)
-            {
-                elemUI = forward_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.Q)
-            {
-                elemUI = forward_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.C)
-            {
-                elemUI = backward_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.Z)
-            {
-                elemUI = backward_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { true });
-            }
-
-            else if (e.Key == Key.R)
-            {
-                ToggleButton toggle = mode;
-
-                toggle.IsChecked = !toggle.IsChecked;
-            }
-
-            else if (e.Key == Key.F)
-            {
-                ToggleButton toggle = headlight;
-
-                toggle.IsChecked = !toggle.IsChecked;
-            }
-        }
-
-        private void key_released(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.W)
-            {
-                if (click == false)
-                {
-
-                }
-
-                else
-                {
-                    elemUI = forward_click;
-
-                    elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                    typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-                }
-            }
-
-            else if (e.Key == Key.S)
-            {
-                if (click == false)
-                {
-
-                }
-
-                else
-                {
-                    elemUI = backward_click;
-
-                    elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                    typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-                }
-            }
-
-            else if (e.Key == Key.D)
-            {
-                elemUI = steer_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-
-            else if (e.Key == Key.A)
-            {
-                elemUI = steer_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-
-            else if (e.Key == Key.E)
-            {
-                elemUI = forward_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-
-            else if (e.Key == Key.Q)
-            {
-                elemUI = forward_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-
-            else if (e.Key == Key.C)
-            {
-                elemUI = backward_r;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-
-            else if (e.Key == Key.Z)
-            {
-                elemUI = backward_l;
-
-                elemUI.RaiseEvent(new MouseButtonEventArgs(InputManager.Current.PrimaryMouseDevice, Environment.TickCount, MouseButton.Left) { RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent });
-                typeof(Button).GetMethod("set_IsPressed", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(elemUI, new object[] { false });
-            }
-        }
-        // ==========================================================
-        // 🔋 SENSOR DATA READING SECTION (Battery, Soil, Temp, Humidity)
-        // ==========================================================
-        private void InitializeSensorReading()
-        {
             try
             {
-                if (!_serialPort.IsOpen)
-                    _serialPort.Open();
-
-                _serialPort.DataReceived += SensorDataReceived;
+                _serialPort.Open();
+                MessageBox.Show("Serial port opened successfully!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to open serial port for sensors: " + ex.Message);
+                MessageBox.Show($"Failed to open serial port: {ex.Message}");
             }
         }
 
-        private void SensorDataReceived(object sender, SerialDataReceivedEventArgs e)
+     
+
+        private void SendDataToArduino(string data)
         {
-            try
+            if (_serialPort.IsOpen)
             {
-                // Read a line from Arduino (format: 8.1,85,30,60)
-                string data = _serialPort.ReadLine().Trim();
-                string[] values = data.Split(',');
-
-                if (values.Length == 4)
-                {
-                    double voltage = double.Parse(values[0]);
-                    int soil = int.Parse(values[1]);
-                    double temp = double.Parse(values[2]);
-                    double humidity = double.Parse(values[3]);
-
-                    // Update UI safely
-                    Dispatcher.Invoke(() =>
-                    {
-                        if (BatteryBar != null)
-                        {
-                            BatteryBar.Value = voltage;
-                            VoltageText.Text = $"{voltage:F2} V";
-                        }
-
-                        if (MoistureBar != null)
-                        {
-                            MoistureBar.Value = soil;
-                            MoistureText.Text = $"{soil}%";
-                        }
-
-                        if (TempText != null)
-                            TempText.Text = $"{temp:F1} °C";
-
-                        if (HumidityText != null)
-                            HumidityText.Text = $"{humidity:F1}%";
-                    });
-                }
+                _serialPort.WriteLine(data);
+                string newText = _serialPort.ReadLine();
+                DebugTextBox.Text = newText;
+                
+              
+                // read response from Arduino
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine("Sensor read error: " + ex.Message);
+                MessageBox.Show("Serial port is not open!");
             }
         }
 
-        // ==========================================================
-        // 🎮 SERVO CONTROL SECTION (Three Servos + Measure Button)
-        // ==========================================================
-        private void Servo1Plus_Click(object sender, RoutedEventArgs e)
+        private void SendDataToBattery(string data)
         {
-            try { _serialPort.Write("S1+"); }
-            catch (Exception ex) { Debug.WriteLine("Servo1+ error: " + ex.Message); }
-        }
-
-        private void Servo1Minus_Click(object sender, RoutedEventArgs e)
-        {
-            try { _serialPort.Write("S1-"); }
-            catch (Exception ex) { Debug.WriteLine("Servo1- error: " + ex.Message); }
-        }
-
-        private void Servo2Plus_Click(object sender, RoutedEventArgs e)
-        {
-            try { _serialPort.Write("S2+"); }
-            catch (Exception ex) { Debug.WriteLine("Servo2+ error: " + ex.Message); }
-        }
-
-        private void Servo2Minus_Click(object sender, RoutedEventArgs e)
-        {
-            try { _serialPort.Write("S2-"); }
-            catch (Exception ex) { Debug.WriteLine("Servo2- error: " + ex.Message); }
-        }
-
-        private void Servo3Plus_Click(object sender, RoutedEventArgs e)
-        {
-            try { _serialPort.Write("S3+"); }
-            catch (Exception ex) { Debug.WriteLine("Servo3+ error: " + ex.Message); }
-        }
-
-        private void Servo3Minus_Click(object sender, RoutedEventArgs e)
-        {
-            try { _serialPort.Write("S3-"); }
-            catch (Exception ex) { Debug.WriteLine("Servo3- error: " + ex.Message); }
-        }
-
-        // Measure button → requests latest sensor data
-        private void MeasureBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
+            if (_serialPort.IsOpen)
             {
-                _serialPort.Write("M");  // Arduino will respond with latest sensor data
-                labelControl.Content = "Measuring sensors...";
+                _serialPort.WriteLine(data);
+                string newText = _serialPort.ReadLine();
+                VoltageTextBox.Text = newText;
+              
+
+                // read response from Arduino
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Failed to send measure command: " + ex.Message);
+                MessageBox.Show("Serial port is not open!");
+            }
+        }
+        private void SendDataToHumidity(string data)
+        {
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.WriteLine(data);
+                string newText = _serialPort.ReadLine();
+                HumidityTextBox.Text = newText;
+           
+
+
+                // read response from Arduino
+            }
+            else
+            {
+                MessageBox.Show("Serial port is not open!");
+            }
+        }
+        private void SendDataToMoisture(string data)
+        {
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.WriteLine(data);
+                Thread.Sleep(250);
+                string newText = _serialPort.ReadLine();
+                MoistureTextBox.Text = newText;
+      
+
+                // read response from Arduino
+            }
+            else
+            {
+                MessageBox.Show("Serial port is not open!");
+            }
+        }
+        private void SendDataToTemperature(string data)
+        {
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.WriteLine(data);
+                Thread.Sleep(250);
+                string newtemp = _serialPort.ReadLine();
+                TemperatureTextBox.Text = newtemp;
+                // read response from Arduino
+            }
+            else
+            {
+                MessageBox.Show("Serial port is not open!");
             }
         }
 
 
+        // Button press/release events
+        private void ButtonForward_Pressed(object sender, RoutedEventArgs e) => SendDataToArduino("w");
+        private void ButtonForward_Released(object sender, RoutedEventArgs e) => SendDataToArduino("x");
 
-        // Add more event handlers for additional buttons here
+        private void ButtonBackward_Pressed(object sender, RoutedEventArgs e) => SendDataToArduino("s");
+        private void ButtonBackward_Released(object sender, RoutedEventArgs e) => SendDataToArduino("x");
+
+        private void ButtonLeft_Pressed(object sender, RoutedEventArgs e) => SendDataToArduino("a");
+        private void ButtonLeft_Released(object sender, RoutedEventArgs e) => SendDataToArduino("x");
+
+        private void ButtonRight_Pressed(object sender, RoutedEventArgs e) => SendDataToArduino("d");
+        private void ButtonRight_Released(object sender, RoutedEventArgs e) => SendDataToArduino("x");
+
+        private void mMinus(object sender, RoutedEventArgs e) => SendDataToArduino("z");
+        private void mPlus(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+
+        // BATERRY, TEMPERATURE, MOISTURE AND HUMIDITY READER
+        private void VOLTAGE_BUTTON(object sender, RoutedEventArgs e) => SendDataToBattery("v");
+
+        private void HUMIDITY_BUTTON(object sender, RoutedEventArgs e) => SendDataToHumidity("n");
+        
+
+        private void MOISTURE_BUTTON(object sender, RoutedEventArgs e) => SendDataToMoisture("b");
+
+        private void TEMPERATURE_BUTTON(object sender, RoutedEventArgs e) => SendDataToTemperature("m");
+
+
+        // Keyboard handling
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.W: ButtonForward_Pressed(sender, null); break;
+                case Key.S: ButtonBackward_Pressed(sender, null); break;
+                case Key.A: ButtonLeft_Pressed(sender, null); break;
+                case Key.D: ButtonRight_Pressed(sender, null); break;
+                case Key.Z: mMinus(sender, null); break;
+                case Key.C: mPlus(sender, null); break;
+                case Key.V: VOLTAGE_BUTTON(sender, null); break;
+                case Key.B: MOISTURE_BUTTON(sender, null); break;
+                case Key.N: HUMIDITY_BUTTON(sender, null); break;
+                case Key.M: TEMPERATURE_BUTTON(sender, null); break;
+
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.W: ButtonForward_Released(sender, null); break;
+                case Key.S: ButtonBackward_Released(sender, null); break;
+                case Key.A: ButtonLeft_Released(sender, null); break;
+                case Key.D: ButtonRight_Released(sender, null); break;
+            }
+        }
+
+        private void VoltageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

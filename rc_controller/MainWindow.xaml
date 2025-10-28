@@ -1,598 +1,87 @@
 ﻿<Window x:Class="rc_controller.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:rc_controller"
-        mc:Ignorable="d"  
-        Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
-        Height="{x:Static SystemParameters.PrimaryScreenHeight}"  
-        Title="MainWindow" 
-        Background="#011B40"
-        WindowState="Maximized"
-        KeyUp="key_released"
-        KeyDown="key_pressed">
-    <Window.Resources>
-        <!-- Custom style for vertical scrollbar -->
-        <Style x:Key="CustomVerticalScrollBar" TargetType="ScrollBar">
-            <Setter Property="Width" Value="10" />
-            <Setter Property="Background" Value="LightGray" />
-            <Setter Property="BorderBrush" Value="DarkGray" />
-            <Setter Property="BorderThickness" Value="2" />
-        </Style>
-    </Window.Resources>
-
-    <Canvas Margin="40">
-        <Canvas.Background>
-            <ImageBrush ImageSource="\Images\bg_2.png" />
-        </Canvas.Background>
-
-        <Grid ShowGridLines="True" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1100"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Canvas Grid.Column="0"
-                    Margin="30">
-                <Border BorderThickness="5"
-                        CornerRadius="15"
-                        BorderBrush="Aqua"
-                        MaxWidth="1100"
-                        MaxHeight="710"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-
-                    <Image Source="\Images\bg_grid1.png"/>
-                </Border>
-
-                <Image Source="\Images\control_3.png"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       MaxHeight="710"
-                       Stretch="Uniform" Width="1129" Canvas.Left="6"/>
-
-                <Button Name="forward_r" Height="75"
-                        Width="75"
-                        Background="Transparent" 
-                        Content="Forward Right"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-
-                    <Button.Template>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\fright_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="385,133,-1107,-126"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed"
-                                         Value="True">
-                                    <Setter TargetName="ButtonImage"
-                                            Property="Source"
-                                            Value="\Images\fright_2.png"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-
-                    </Button.Template>
-
-                </Button>
-
-
-                <Button Name="forward_l" Height="75"
-                        Width="75"
-                        Background="Transparent"
-                        Content="Forward Left"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-
-                    <Button.Template>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\fleft_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="334,133,-965,-126" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed"
-                                         Value="True">
-                                    <Setter TargetName="ButtonImage"
-                                            Property="Source"
-                                            Value="\Images\fleft_2.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Name="backward_l" Height="70"
-                        Width="70"
-                        Background="Transparent"
-                        Content="Backward Left"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\rleft_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="334,227,-965,-227" />
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage"
-                                            Property="Source"
-                                            Value="\Images\rleft_2.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-
-                <Button Name="backward_r" Height="70"
-                        Width="70"
-                        Background="Transparent"
-                        Content="Backward Right"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\rright_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="385,229,-1107,-229" />
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rright_2.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-
-                <Button Name="forward_click" 
-                        Height="110" 
-                        Width="110"
-                        Background="Transparent"
-                        Visibility="Hidden"
-                        IsEnabled="False"
-                        Content="Forward"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-
-                    <Button.Template>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\forward_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="97,115,-313,-94"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-
-                    </Button.Template>
-
-                </Button>
-
-                <ToggleButton Name="forward_toggle" 
-                              Height="110" 
-                              Width="110" 
-                              Background="Transparent"
-                              Checked="ToggleButton_Checked"
-                              Unchecked="ToggleButton_Unchecked">
-
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\forward_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="97,115,-313,-94"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\forward_1.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                </ToggleButton>
-
-
-                <Button Name="backward_click" 
-                        Height="110" 
-                        Width="110" 
-                        Background="Transparent"  
-                        Visibility="Hidden"
-                        IsEnabled="False"
-                        Content="Backward"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-
-                    <Button.Template>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\rev_1.png"
-                                       x:Name="ButtonImage"  
-                                       Margin="98,230,-314,-209"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-
-                    </Button.Template>
-
-                </Button>
-
-                <ToggleButton Name="backward_toggle" 
-                              Height="110" 
-                              Width="110" 
-                              Background="Transparent"
-                              Checked="ToggleButton_Checked"
-                              Unchecked="ToggleButton_Unchecked">
-
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\rev_1.png"
-                                      x:Name="ButtonImage"
-                                      Margin="98,230,-314,-209"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\rev_1.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                </ToggleButton>
-
-                <Button Name="steer_l" Height="80"
-                        Width="80"
-                        Background="Transparent"
-                        Content="Left"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\left_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="63,190,-256,-168" />
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\left_2.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Name="steer_r" Height="80"
-                        Width="80"
-                        Background="Transparent"
-                        Content="Right"
-                        PreviewMouseLeftButtonDown="Button_Pressed"
-                        PreviewMouseLeftButtonUp="Button_Unpressed">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image Source="\Images\right_1.png"
-                                       x:Name="ButtonImage"
-                                       Margin="133,190,-442,-168"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\right_2.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <ToggleButton Name="headlight" Height="105"
-                              Width="105"
-                              Background="Transparent"
-                              Checked="Headlight_Checked"
-                              Unchecked="Headlight_Unchecked">
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image x:Name="ButtonImage"
-                                       Margin="237,318,-661,-274"
-                                       Source="\Images\headlight_1.png"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\headlight_1.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                </ToggleButton>
-
-                <ToggleButton Name="mode" 
-                              Height="105" 
-                              Width="105" 
-                              Background="Transparent"
-                              Checked="Mode_Checked"
-                              Unchecked="Mode_Unchecked">
-                    <ToggleButton.Template>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border Background="{TemplateBinding Background}">
-
-                                <Image x:Name="ButtonImage"
-                                       Source="\Images\m1.png"
-                                       Margin="164,83,-462,-42" RenderTransformOrigin="0.5,0.5">
-                                    <Image.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform Angle="0"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Image.RenderTransform>
-                                </Image>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m2.png"/>
-                                </Trigger>
-
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ButtonImage" Property="Source" Value="\Images\m1.png"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </ToggleButton.Template>
-                </ToggleButton>
-
-
-
-                <Image Source="\Images\screen.png" Stretch="Fill" Canvas.Left="401" Canvas.Top="122" HorizontalAlignment="Center" VerticalAlignment="Top" Width="192" Height="108"/>
-                <Label x:Name ="labelControl" Content="RC CONTROLLER" Height="76" Canvas.Left="417" Canvas.Top="138" Width="161" Foreground="White" FontFamily="ISOCTEUR" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                    <Label.Effect>
-                        <DropShadowEffect Color="White" BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="1"/>
-                    </Label.Effect>
-                </Label>
-            </Canvas>
-
-            <Canvas Grid.Column="1" Margin="0,30,30,30">
-                <Border Width="330"
-                        Height="710"
-                        CornerRadius="15,15,15,15"
-                        BorderThickness="5"
-                        BorderBrush="Aqua">
-                    <Border.Background>
-                        <ImageBrush ImageSource="\Images\pix_2.png"/>
-                    </Border.Background>
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden"
-                                  PanningMode="VerticalOnly">
-
-                        <StackPanel Margin="10">
-                            <Image Source="\Images\tgbtnmd.png"/>
-                            <Image Source="\Images\normbtnmd.png"/>
-                            <Image Source="\Images\fright_3.png"/>
-                            <Image Source="\Images\fleft_3.png"/>
-                            <Image Source="\Images\rright_3.png"/>
-                            <Image Source="\Images\rleft_3.png"/>
-                            <Image Source="\Images\forward_3.png"/>
-                            <Image Source="\Images\rev_3.png"/>
-                            <Image Source="\Images\right_3.png"/>
-                            <Image Source="\Images\left_3.png"/>
-                            <Image Source="\Images\headlight_4.png"/>
-                            <Image Source="\Images\headlight_3.png"/>
-                            <Image Source="\Images\tgbtnmd.png"/>
-                            <Image Source="\Images\tgbtnmd.png"/>
-
-
-                        </StackPanel>
-
-
-                    </ScrollViewer>
-                </Border>
-            </Canvas>
-        </Grid>
-        <Image Height="769" Canvas.Left="31" Width="736" Source="/Screenshot 2025-10-27 192954.png" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="20"/>
-        <Image Height="717" Canvas.Left="230" Canvas.Top="20" Width="941" Source="/Screenshot 2025-10-27 192954.png"/>
-
-        <Border Background="#AA000000"
-            CornerRadius="20"
-            BorderBrush="Cyan"
-            BorderThickness="3"
-            Padding="25"
-            Width="450"
-            Height="400"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Panel.ZIndex="2" Canvas.Left="250" Canvas.Top="60">
-
-            <StackPanel>
-                <TextBlock Text="SENSOR READINGS"
-                   FontSize="30"
-                   Foreground="Cyan"
-                   FontWeight="Bold"
-                   TextAlignment="Center"
-                   Margin="0,0,0,25"/>
-
-                <!-- Battery -->
-                <TextBlock Text="Battery Voltage:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
-                <ProgressBar x:Name="BatteryBar"
-                     Minimum="0" Maximum="8.4"
-                     Height="35"
-                     Foreground="Lime"/>
-                <TextBlock x:Name="VoltageText"
-                   Text="0V"
-                   FontSize="24"
-                   Foreground="White"
-                   FontWeight="Bold"
-                   Margin="0,5,0,20"/>
-
-                <!-- Soil Moisture -->
-                <TextBlock Text="Soil Moisture:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
-                <ProgressBar x:Name="MoistureBar"
-                     Minimum="0" Maximum="100"
-                     Height="35"
-                     Foreground="DodgerBlue"/>
-                <TextBlock x:Name="MoistureText"
-                   Text="0%"
-                   FontSize="24"
-                   Foreground="White"
-                   FontWeight="Bold"
-                   Margin="0,5,0,20"/>
-
-                <!-- Temperature -->
-                <TextBlock Text="Temperature:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
-                <TextBlock x:Name="TempText"
-                   Text="0°C"
-                   FontSize="26"
-                   FontWeight="Bold"
-                   Foreground="Orange"
-                   Margin="0,5,0,20"/>
-
-                <!-- Humidity -->
-                <TextBlock Text="Humidity:" Foreground="White" FontSize="22" Margin="0,0,0,5"/>
-                <TextBlock x:Name="HumidityText"
-                   Text="0%"
-                   FontSize="26"
-                   FontWeight="Bold"
-                   Foreground="LightBlue"/>
-            </StackPanel>
-        </Border>
-        <!-- ==================== SERVO CONTROL SECTION ==================== -->
-        <Border Background="#AA000000"
-        CornerRadius="10"
-        BorderBrush="Cyan"
-        BorderThickness="2"
-        Padding="10" Canvas.Left="728" Canvas.Top="83">
-            <StackPanel>
-                <TextBlock Text="SERVO CONTROL"
-                   FontSize="20"
-                   Foreground="Cyan"
-                   FontWeight="Bold"
-                   TextAlignment="Center"
-                   Margin="0,0,0,10"/>
-
-                <!-- Servo 1 -->
-                <TextBlock Text="Servo 1" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
-                    <Button x:Name="Servo1Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo1Plus_Click"/>
-                    <Button x:Name="Servo1Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo1Minus_Click"/>
-                </StackPanel>
-
-                <!-- Servo 2 -->
-                <TextBlock Text="Servo 2" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
-                    <Button x:Name="Servo2Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo2Plus_Click"/>
-                    <Button x:Name="Servo2Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo2Minus_Click"/>
-                </StackPanel>
-
-                <!-- Servo 3 -->
-                <TextBlock Text="Servo 3" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
-                    <Button x:Name="Servo3Plus" Content="+" Width="60" Height="40" FontSize="20" Click="Servo3Plus_Click"/>
-                    <Button x:Name="Servo3Minus" Content="-" Width="60" Height="40" FontSize="20" Margin="10,0,0,0" Click="Servo3Minus_Click"/>
-                </StackPanel>
-
-                <!-- Measure Button -->
-                <Button x:Name="MeasureBtn"
-                Content="Measure Sensors"
-                Width="200"
-                Height="50"
-                FontSize="18"
-                FontWeight="Bold"
-                Background="DodgerBlue"
-                Foreground="White"
-                Click="MeasureBtn_Click"
-                Margin="0,15,0,0"/>
-            </StackPanel>
-        </Border>
-
-
+        Title="RC Controller" Height="731" Width="1149">
+
+    <!-- Canvas allows free-form placement -->
+    <Canvas Background="#011B40">
+
+        <!-- FORWARD button -->
+        <Button Content="FORWARD" Width="150" Height="80" FontSize="22"
+                Canvas.Left="225" Canvas.Top="103"
+                PreviewMouseLeftButtonDown="ButtonForward_Pressed"
+                PreviewMouseLeftButtonUp="ButtonForward_Released"/>
+
+        <!-- BACKWARD button -->
+        <Button Content="BACKWARD" Width="150" Height="80" FontSize="22"
+                Canvas.Left="225" Canvas.Top="358"
+                PreviewMouseLeftButtonDown="ButtonBackward_Pressed"
+                PreviewMouseLeftButtonUp="ButtonBackward_Released"/>
+
+        <!-- LEFT button -->
+        <Button Content="LEFT" Width="150" Height="80" FontSize="22"
+                Canvas.Left="65" Canvas.Top="219"
+                PreviewMouseLeftButtonDown="ButtonLeft_Pressed"
+                PreviewMouseLeftButtonUp="ButtonLeft_Released"/>
+
+        <!-- RIGHT button -->
+        <Button Content="RIGHT" Width="150" Height="80" FontSize="22"
+                Canvas.Left="388" Canvas.Top="219"
+                PreviewMouseLeftButtonDown="ButtonRight_Pressed"
+                PreviewMouseLeftButtonUp="ButtonRight_Released"/>
+        <Button Content="RIGHT" Width="150" Height="80" FontSize="22"
+            Canvas.Left="388" Canvas.Top="219"
+            PreviewMouseLeftButtonDown="ButtonRight_Pressed"
+            PreviewMouseLeftButtonUp="ButtonRight_Released" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="M-" Canvas.Left="685" Canvas.Top="365" Height="56" Width="76" Click="mMinus" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="M+" Canvas.Left="846" Canvas.Top="365" Height="56" Width="76" HorizontalAlignment="Left" VerticalAlignment="Top" Click="mPlus"/>
+        <TextBox x:Name="DebugTextBox"
+         Canvas.Left="685"
+         Canvas.Top="143"
+         Width="237"
+         Height="40"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         Text="Waiting for data..." HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+        <!---->
+        <TextBox x:Name="VoltageTextBox"
+         Canvas.Left="65"
+         Canvas.Top="504"
+         Width="128"
+         Height="40"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         Text="Voltage : " HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="VoltageTextBox_TextChanged" />
+        <TextBox  x:Name="TemperatureTextBox"
+         Canvas.Left="574"
+         Canvas.Top="504"
+         Width="128"
+         Height="40"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         Text="Temperature : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox  x:Name="HumidityTextBox"
+         Canvas.Left="403"
+         Canvas.Top="504"
+         Width="128"
+         Height="40"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         Text="Humidity : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox  x:Name="MoistureTextBox"
+         Canvas.Left="236"
+         Canvas.Top="504"
+         Width="128"
+         Height="40"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         Text="Moisture : " HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <!---->
+        <Button Content="VOLTAGE" Canvas.Left="65" Canvas.Top="568" Height="36" Width="128" Click="VOLTAGE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Content="HUMIDITY" Canvas.Left="403" Canvas.Top="568" Height="36" Width="128" Click="HUMIDITY_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="MOISTURE" Canvas.Left="236" Canvas.Top="568" Height="36" Width="128" Click="MOISTURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="TEMPERATURE" Canvas.Left="574" Canvas.Top="568" Height="36" Width="128" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 
 
