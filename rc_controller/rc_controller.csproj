@@ -13,6 +13,7 @@
     <None Remove="Images\bg_1.png" />
     <None Remove="Images\bg_2.png" />
     <None Remove="Images\bg_grid.png" />
+    <None Remove="mater_car.png" />
     <None Remove="Screenshot 2025-10-27 192954.png" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <Resource Include="Images\bg_grid.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="mater_car.png" />
     <Resource Include="Screenshot 2025-10-27 192954.png" />
   </ItemGroup>
 
