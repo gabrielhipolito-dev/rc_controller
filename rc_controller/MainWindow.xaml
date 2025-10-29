@@ -5,12 +5,14 @@
 
     <!-- Canvas allows free-form placement -->
     <Canvas Background="#011B40">
-
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Images/bg_grid1.png" Stretch="None"/>
+        </StackPanel>
         <!-- FORWARD button -->
         <Button Content="FORWARD" Width="150" Height="80" FontSize="22"
                 Canvas.Left="214" Canvas.Top="278"
                 PreviewMouseLeftButtonDown="ButtonForward_Pressed"
-                PreviewMouseLeftButtonUp="ButtonForward_Released" RenderTransformOrigin="0.367,2.341" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                PreviewMouseLeftButtonUp="ButtonForward_Released" RenderTransformOrigin="0.367,2.341" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click"/>
 
         <!-- BACKWARD button -->
         <Button Content="BACKWARD" Width="150" Height="80" FontSize="22"
@@ -25,10 +27,14 @@
                 PreviewMouseLeftButtonUp="ButtonLeft_Released" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- RIGHT button -->
-        <Button Content="RIGHT" Width="150" Height="80" FontSize="22"
+        <Button Width="150" Height="80" FontSize="22"
                 Canvas.Left="374" Canvas.Top="393"
-                PreviewMouseLeftButtonDown="ButtonRight_Pressed"
-                PreviewMouseLeftButtonUp="ButtonRight_Released" RenderTransformOrigin="0.245,1.386" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                PreviewMouseLeftButtonDown="ButtonRight_Pressed" Background="Transparent" BorderBrush="Transparent" Focusable="False"
+                PreviewMouseLeftButtonUp="ButtonRight_Released" RenderTransformOrigin="0.245,1.386" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Click_1" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Images/right_1.png" Stretch="Fill"/>
+            </StackPanel>
+        </Button>
 
         <Button Content="M-" Canvas.Left="65" Canvas.Top="618" Height="56" Width="76" Click="mMinus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="M+" Canvas.Left="177" Canvas.Top="618" Height="56" Width="76" HorizontalAlignment="Left" VerticalAlignment="Center" Click="mPlus" RenderTransformOrigin="0.461,0.451" FontSize="20"/>
