@@ -27,7 +27,7 @@ namespace rc_controller
         {
             _serialPort = new SerialPort
             {
-                PortName = "COM4",   // Change to your Arduino COM port
+                PortName = "COM3",   // Change to your Arduino COM port
                 BaudRate = 9600,
                 Parity = Parity.None,
                 DataBits = 8,
@@ -53,6 +53,7 @@ namespace rc_controller
             if (_serialPort.IsOpen)
             {
                 _serialPort.WriteLine(data);
+                Thread.Sleep(100);
                 string newText = _serialPort.ReadLine();
                 DebugTextBox.Text = newText;
                 
@@ -150,34 +151,34 @@ namespace rc_controller
 
         // servo mechanics
         // servo 1
-        private void s1minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s1minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("t");
         private void s1minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
 
-        private void s1plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s1plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("y");
         private void s1plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
         // servo 2
-        private void s2minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s2minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("g");
         private void s2minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
 
-        private void s2plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s2plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("h");
         private void s2plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
         // servo 3
-        private void s3minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s3minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("u");
         private void s3minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
 
-        private void s3plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s3plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("i");
         private void s3plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
         // servo 4
-        private void s4minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("c");
+        private void s4minus_press(object sender, RoutedEventArgs e) => SendDataToArduino("j");
         private void s4minus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
 
-        private void s4plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("v");
+        private void s4plus_press(object sender, RoutedEventArgs e) => SendDataToArduino("k");
         private void s4plus_Released(object sender, RoutedEventArgs e) => SendDataToArduino("p");
 
 
@@ -211,6 +212,14 @@ namespace rc_controller
                 case Key.B: MOISTURE_BUTTON(sender, null); break;
                 case Key.N: HUMIDITY_BUTTON(sender, null); break;
                 case Key.M: TEMPERATURE_BUTTON(sender, null); break;
+                case Key.T: s1minus_press(sender, null); break;
+                case Key.Y: s1plus_press(sender, null); break;
+                case Key.G: s2minus_press(sender, null); break;
+                case Key.H: s2plus_press(sender, null); break;
+                case Key.U: s3minus_press(sender, null); break;
+                case Key.I: s3plus_press(sender, null); break;
+                case Key.J: s4minus_press(sender, null); break;
+                case Key.K: s4plus_press(sender, null); break;
 
             }
         }
@@ -223,6 +232,14 @@ namespace rc_controller
                 case Key.S: ButtonBackward_Released(sender, null); break;
                 case Key.A: ButtonLeft_Released(sender, null); break;
                 case Key.D: ButtonRight_Released(sender, null); break;
+                case Key.T: s1minus_Released(sender, null); break;
+                case Key.Y: s1plus_Released(sender, null); break;
+                case Key.G: s2minus_Released(sender, null); break;
+                case Key.H: s2plus_Released(sender, null); break;
+                case Key.U: s3minus_Released(sender, null); break;
+                case Key.I: s3plus_Released(sender, null); break;
+                case Key.J: s4minus_Released(sender, null); break;
+                case Key.K: s4plus_Released(sender, null); break;
             }
         }
 
