@@ -27,7 +27,7 @@ namespace rc_controller
         {
             _serialPort = new SerialPort
             {
-                PortName = "COM3",   // Change to your Arduino COM port
+                PortName = "COM4",   // Change to your Arduino COM port
                 BaudRate = 9600,
                 Parity = Parity.None,
                 DataBits = 8,
@@ -248,6 +248,14 @@ namespace rc_controller
 
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
