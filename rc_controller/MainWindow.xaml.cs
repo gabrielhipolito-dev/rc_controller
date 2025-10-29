@@ -15,7 +15,7 @@ namespace rc_controller
         public MainWindow()
         {
             InitializeComponent();
-            InitializeSerialPort();
+            
 
             // Set focus to window to capture key presses
             this.Focusable = true;
@@ -23,11 +23,12 @@ namespace rc_controller
             this.KeyUp += Window_KeyUp;
         }
 
-        private void InitializeSerialPort()
+        private void InitializeSerialPort(string comport)
         {
+
             _serialPort = new SerialPort
             {
-                PortName = "COM4",   // Change to your Arduino COM port
+                PortName = comport,   // Change to your Arduino COM port
                 BaudRate = 9600,
                 Parity = Parity.None,
                 DataBits = 8,
@@ -46,7 +47,8 @@ namespace rc_controller
             }
         }
 
-     
+        // CONNECT
+        private void CONNECT_BUTTON(object sender, RoutedEventArgs e) => InitializeSerialPort(ComPortComboBox.Text);
 
         private void SendDataToArduino(string data)
         {
@@ -196,6 +198,8 @@ namespace rc_controller
 
         private void TEMPERATURE_BUTTON(object sender, RoutedEventArgs e) => SendDataToTemperature("m");
 
+        
+
 
         // Keyboard handling
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -248,14 +252,7 @@ namespace rc_controller
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
+       
     }
 }
