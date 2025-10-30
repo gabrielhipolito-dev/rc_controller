@@ -46,28 +46,28 @@
                 PreviewMouseLeftButtonUp="ButtonRight_Released" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click">
         </Button>
 
-        <Button Content="M-" Canvas.Left="580" Canvas.Top="591" Height="90" Width="194" Click="mMinus" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Content="M+" Canvas.Left="580" Canvas.Top="456" Height="90" Width="194" Click="mPlus" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="M-" Canvas.Left="38" Canvas.Top="584" Height="90" Width="128" Click="mMinus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="M+" Canvas.Left="38" Canvas.Top="456" Height="90" Width="128" Click="mPlus" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <TextBox x:Name="DebugTextBox"
                  Canvas.Left="182" Canvas.Top="456" Width="360" Height="80"
                  IsReadOnly="True" Text="Waiting for data..." HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Sensors display -->
-        <TextBox x:Name="VoltageTextBox" Canvas.Left="10" Canvas.Top="566"
-                 Width="128" Height="63" IsReadOnly="True" Text="Voltage : " HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.516,1.486"/>
-        <TextBox x:Name="TemperatureTextBox" Canvas.Left="10" Canvas.Top="456"
-                 Width="128" Height="52" IsReadOnly="True" Text="Temperature : " HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.522,-0.63"/>
+        <TextBox x:Name="VoltageTextBox" Canvas.Left="576" Canvas.Top="456"
+                 Width="194" Height="52" IsReadOnly="True" Text="Voltage : " HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.516,1.486"/>
+        <TextBox x:Name="TemperatureTextBox" Canvas.Left="576" Canvas.Top="577"
+                 Width="194" Height="52" IsReadOnly="True" Text="Temperature : " HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.522,-0.63"/>
         <TextBox x:Name="HumidityTextBox" Canvas.Left="821" Canvas.Top="456"
-                 Width="194" Height="52" IsReadOnly="True" Text="Humidity : "/>
+                 Width="194" Height="52" IsReadOnly="True" Text="Humidity : " HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <TextBox x:Name="MoistureTextBox" Canvas.Left="821" Canvas.Top="577"
                  Width="194" Height="52" IsReadOnly="True" Text="Moisture : " RenderTransformOrigin="0.128,0.301" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Sensor buttons -->
-        <Button Content="VOLTAGE" Canvas.Left="10" Canvas.Top="645" Height="36" Width="128" Click="VOLTAGE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Content="HUMIDITY" Canvas.Left="821" Canvas.Top="519" Height="29" Width="194" Click="HUMIDITY_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="VOLTAGE" Canvas.Left="576" Canvas.Top="528" Height="29" Width="191" Click="VOLTAGE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Content="HUMIDITY" Canvas.Left="821" Canvas.Top="528" Height="29" Width="194" Click="HUMIDITY_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button Content="MOISTURE" Canvas.Left="821" Canvas.Top="646" Height="34" Width="194" Click="MOISTURE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Content="TEMPERATURE" Canvas.Left="10" Canvas.Top="519" Height="36" Width="128" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="TEMPERATURE" Canvas.Left="576" Canvas.Top="651" Height="29" Width="194" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <!-- Servo 1 -->
         <Button Content="-" Canvas.Left="1058" Canvas.Top="263" Height="56" Width="76" FontSize="40"
