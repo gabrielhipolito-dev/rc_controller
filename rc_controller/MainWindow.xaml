@@ -22,91 +22,91 @@
         </StackPanel>
 
         <!-- FORWARD button -->
-        <Button Content="FORWARD" Width="128" Height="48" FontSize="22"
-                Canvas.Left="356" Canvas.Top="495"
+        <Button Content="FORWARD" Width="160" Height="62" FontSize="22"
+                Canvas.Left="284" Canvas.Top="562"
                 PreviewMouseLeftButtonDown="ButtonForward_Pressed"
-                PreviewMouseLeftButtonUp="ButtonForward_Released"/>
+                PreviewMouseLeftButtonUp="ButtonForward_Released" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- BACKWARD button -->
-        <Button Content="BACKWARD" Width="120" Height="56" FontSize="22"
-                Canvas.Left="356" Canvas.Top="620"
+        <Button Content="BACKWARD" Width="162" Height="61" FontSize="22"
+                Canvas.Left="283" Canvas.Top="622"
                 PreviewMouseLeftButtonDown="ButtonBackward_Pressed"
-                PreviewMouseLeftButtonUp="ButtonBackward_Released"/>
+                PreviewMouseLeftButtonUp="ButtonBackward_Released" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <!-- LEFT button -->
-        <Button Content="LEFT" Width="121" Height="56" FontSize="22"
-                Canvas.Left="247" Canvas.Top="559"
+        <Button Content="LEFT" Width="101" Height="124" FontSize="22"
+                Canvas.Left="182" Canvas.Top="559"
                 PreviewMouseLeftButtonDown="ButtonLeft_Pressed"
-                PreviewMouseLeftButtonUp="ButtonLeft_Released"/>
+                PreviewMouseLeftButtonUp="ButtonLeft_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- RIGHT button -->
-        <Button Content=" RIGTH" Width="120" Height="54" FontSize="22"
-                Canvas.Left="449" Canvas.Top="555"
+        <Button Content=" RIGTH" Width="98" Height="120" FontSize="22"
+                Canvas.Left="444" Canvas.Top="561"
                 PreviewMouseLeftButtonDown="ButtonRight_Pressed"
-                PreviewMouseLeftButtonUp="ButtonRight_Released">
+                PreviewMouseLeftButtonUp="ButtonRight_Released" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click">
         </Button>
 
-        <Button Content="M-" Canvas.Left="866" Canvas.Top="426" Height="73" Width="136" Click="mMinus"/>
-        <Button Content="M+" Canvas.Left="678" Canvas.Top="428" Height="56" Width="148" Click="mPlus" FontSize="20"/>
+        <Button Content="M-" Canvas.Left="580" Canvas.Top="591" Height="90" Width="194" Click="mMinus" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="M+" Canvas.Left="580" Canvas.Top="456" Height="90" Width="194" Click="mPlus" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <TextBox x:Name="DebugTextBox"
-                 Canvas.Left="298" Canvas.Top="436" Width="236" Height="40"
-                 IsReadOnly="True" Text="Waiting for data..."/>
+                 Canvas.Left="182" Canvas.Top="456" Width="360" Height="80"
+                 IsReadOnly="True" Text="Waiting for data..." HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Sensors display -->
-        <TextBox x:Name="VoltageTextBox" Canvas.Left="65" Canvas.Top="617"
-                 Width="128" Height="40" IsReadOnly="True" Text="Voltage : "/>
-        <TextBox x:Name="TemperatureTextBox" Canvas.Left="65" Canvas.Top="495"
-                 Width="128" Height="40" IsReadOnly="True" Text="Temperature : "/>
-        <TextBox x:Name="HumidityTextBox" Canvas.Left="849" Canvas.Top="542"
-                 Width="128" Height="40" IsReadOnly="True" Text="Humidity : "/>
-        <TextBox x:Name="MoistureTextBox" Canvas.Left="596" Canvas.Top="582"
-                 Width="128" Height="40" IsReadOnly="True" Text="Moisture : "/>
+        <TextBox x:Name="VoltageTextBox" Canvas.Left="10" Canvas.Top="566"
+                 Width="128" Height="63" IsReadOnly="True" Text="Voltage : " HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.516,1.486"/>
+        <TextBox x:Name="TemperatureTextBox" Canvas.Left="10" Canvas.Top="456"
+                 Width="128" Height="52" IsReadOnly="True" Text="Temperature : " HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.522,-0.63"/>
+        <TextBox x:Name="HumidityTextBox" Canvas.Left="821" Canvas.Top="456"
+                 Width="194" Height="52" IsReadOnly="True" Text="Humidity : "/>
+        <TextBox x:Name="MoistureTextBox" Canvas.Left="821" Canvas.Top="577"
+                 Width="194" Height="52" IsReadOnly="True" Text="Moisture : " RenderTransformOrigin="0.128,0.301" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Sensor buttons -->
-        <Button Content="VOLTAGE" Canvas.Left="65" Canvas.Top="564" Height="36" Width="128" Click="VOLTAGE_BUTTON"/>
-        <Button Content="HUMIDITY" Canvas.Left="849" Canvas.Top="594" Height="36" Width="128" Click="HUMIDITY_BUTTON"/>
-        <Button Content="MOISTURE" Canvas.Left="596" Canvas.Top="532" Height="36" Width="128" Click="MOISTURE_BUTTON"/>
-        <Button Content="TEMPERATURE" Canvas.Left="65" Canvas.Top="436" Height="36" Width="128" Click="TEMPERATURE_BUTTON"/>
+        <Button Content="VOLTAGE" Canvas.Left="10" Canvas.Top="645" Height="36" Width="128" Click="VOLTAGE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="HUMIDITY" Canvas.Left="821" Canvas.Top="519" Height="29" Width="194" Click="HUMIDITY_BUTTON" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="MOISTURE" Canvas.Left="821" Canvas.Top="646" Height="34" Width="194" Click="MOISTURE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="TEMPERATURE" Canvas.Left="10" Canvas.Top="519" Height="36" Width="128" Click="TEMPERATURE_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Servo 1 -->
-        <Button Content="-" Canvas.Left="1058" Canvas.Top="282" Height="56" Width="76" FontSize="40"
+        <Button Content="-" Canvas.Left="1058" Canvas.Top="263" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s1minus_press"
-                PreviewMouseLeftButtonUp="s1minus_Released"/>
-        <Button Content="+" Canvas.Left="1170" Canvas.Top="282" Height="56" Width="76" FontSize="40"
+                PreviewMouseLeftButtonUp="s1minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="+" Canvas.Left="1170" Canvas.Top="263" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s1plus_press"
-                PreviewMouseLeftButtonUp="s1plus_Released"/>
+                PreviewMouseLeftButtonUp="s1plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Servo 2 -->
         <Button Content="-" Canvas.Left="1058" Canvas.Top="377" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s2minus_press"
-                PreviewMouseLeftButtonUp="s2minus_Released"/>
+                PreviewMouseLeftButtonUp="s2minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button Content="+" Canvas.Left="1170" Canvas.Top="377" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s2plus_press"
-                PreviewMouseLeftButtonUp="s2plus_Released"/>
+                PreviewMouseLeftButtonUp="s2plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Servo 3 -->
-        <Button Content="-" Canvas.Left="1058" Canvas.Top="487" Height="56" Width="76" FontSize="40"
+        <Button Content="-" Canvas.Left="1058" Canvas.Top="500" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s3minus_press"
-                PreviewMouseLeftButtonUp="s3minus_Released"/>
-        <Button Content="+" Canvas.Left="1170" Canvas.Top="487" Height="56" Width="76" FontSize="40"
+                PreviewMouseLeftButtonUp="s3minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="+" Canvas.Left="1170" Canvas.Top="499" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s3plus_press"
-                PreviewMouseLeftButtonUp="s3plus_Released"/>
+                PreviewMouseLeftButtonUp="s3plus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- Servo 4 -->
-        <Button Content="-" Canvas.Left="1058" Canvas.Top="601" Height="56" Width="76" FontSize="40"
+        <Button Content="-" Canvas.Left="1058" Canvas.Top="629" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s4minus_press"
-                PreviewMouseLeftButtonUp="s4minus_Released"/>
-        <Button Content="+" Canvas.Left="1170" Canvas.Top="601" Height="56" Width="76" FontSize="40"
+                PreviewMouseLeftButtonUp="s4minus_Released" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button Content="+" Canvas.Left="1170" Canvas.Top="630" Height="56" Width="76" FontSize="40"
                 PreviewMouseLeftButtonDown="s4plus_press"
-                PreviewMouseLeftButtonUp="s4plus_Released"/>
+                PreviewMouseLeftButtonUp="s4plus_Released" RenderTransformOrigin="0.453,1.347" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <!-- ComboBox (Dropdown now works correctly) -->
         <ComboBox x:Name="ComPortComboBox"
-                  Canvas.Left="1083" Canvas.Top="44"
-                  Width="163" Height="31" FontSize="14"
+                  Canvas.Left="1058" Canvas.Top="45"
+                  Width="188" Height="74" FontSize="14"
                   Background="White" Foreground="Black"
-                  Focusable="True" IsHitTestVisible="True" StaysOpenOnEdit="True">
+                  Focusable="True" IsHitTestVisible="True" StaysOpenOnEdit="True" HorizontalAlignment="Center" VerticalAlignment="Top">
             <ComboBoxItem IsSelected="True">Select COM port</ComboBoxItem>
             <ComboBoxItem>COM1</ComboBoxItem>
             <ComboBoxItem>COM2</ComboBoxItem>
@@ -121,7 +121,7 @@
         </ComboBox>
 
         <!-- Connect button -->
-        <Button Content="CONNECT" Canvas.Left="1100" Canvas.Top="101" Height="36" Width="128" Click="CONNECT_BUTTON"/>
+        <Button Content="CONNECT" Canvas.Left="1058" Canvas.Top="153" Height="62" Width="188" Click="CONNECT_BUTTON" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Image Height="403" Canvas.Left="113" Canvas.Top="30" Width="661" Source="/mater_car.png"/>
 
 

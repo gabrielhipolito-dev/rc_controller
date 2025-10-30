@@ -252,7 +252,9 @@ namespace rc_controller
 
         }
 
-      
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
