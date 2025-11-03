@@ -40,13 +40,19 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 - **Arduino IDE**
 
 ### Hardware
-- Arduino Nano
+- Arduino Nano ch340
 - HC-05 / HC-06 Bluetooth Module
 - 2WD Motor Driver (L298N or similar)
 - 4x Servo motors
 - Soil moisture sensor
 - Voltage sensor
 - DHT11 / DHT22 sensor (Humidity + Temp)
+- l298N H-Bridge Driver
+- HC-05 Bluetooth Module
+- HW-103 soil moisture sensor
+- 2s battery holder
+- Toggle Switch
+- Jumper Wires
 
 ---
 
