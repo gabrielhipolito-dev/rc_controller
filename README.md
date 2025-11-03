@@ -74,10 +74,9 @@ Temperature Reading | `M`
 
 | Servo | Keys |
 |-------|-----|
-Servo 1 | `T` / `Y`  
-Servo 2 | `G` / `H`  
-Servo 3 | `U` / `I`  
-Servo 4 | `J` / `K`  
+Servo A (X - AXIS) | `T` / `G`  
+Servo B (Y - AXIS) | `Y` / `H`  
+Servo R (Z - ROTATION) | `U` / `I`  
 
 ---
 
