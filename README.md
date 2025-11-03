@@ -1,38 +1,92 @@
-# 🚗 RC Controller App (C# + Arduino)
+# 🌱🤖 Garden Analyzer & Botanist (GAB)
 
-This project is a **WPF (Windows Presentation Foundation)** application written in **C# (.NET)** for controlling hardware components such as motors and sensors connected to an **Arduino** through **serial communication**.
-
-It allows you to send commands using **buttons** or **keyboard keys** (`W`, `A`, `S`, `D`, etc.) and display live feedback from the Arduino inside the app.
-
----
-
-## 🧠 Features
-
-- 🎮 Control movement using buttons or keyboard (`W`, `A`, `S`, `D`, `Z`, `C`)
-- 🔌 Communicates with Arduino via serial port (COM3, 9600 baud)
-- 📊 Displays real-time Arduino data (e.g., voltage, humidity, temperature)
-- 🪟 Simple WPF interface built with Visual Studio
-- ⚙️ Works on .NET 6 or .NET 8
+A smart agricultural robot designed to monitor plant health and assist in garden automation.  
+GAB utilizes sensors, a robotic arm, and wireless control to gather environmental data and interact with plants.
 
 ---
 
-## 🧩 Requirements
-
-Before you start, make sure you have:
-- 🧰 **Visual Studio 2019 / 2022**
-- 💾 **.NET 6 or .NET 8 SDK**
-- 🔌 **Arduino IDE**
-- 🧠 Basic knowledge of serial communication
-- 🪫 Arduino connected to your PC via USB
+### 👨‍💻 Developed By
+- Jeff Bayhon  
+- Lance Dador  
+- Giuliano de Guzman  
+- Gabriel Hipolito  
 
 ---
 
-## 🧭 How to Run the Project
+## 🧠 Languages Used
+- **Arduino** (Nano microcontroller firmware)
+- **C#** (Windows .NET Application)
 
-### 🔹 Step 1: Clone the Repository
-Open **Visual Studio** and do this:
+---
 
-1. Click **Clone a repository**
-2. In **Repository location**, paste:
-   ```bash
-   https://github.com/YOUR_USERNAME/rc_controller.git
+## ✨ Features
+- 2-Wheel Drive movement system  
+- 4-DOF robotic servo arm  
+- Bluetooth communication (Serial)  
+- Live sensor readings:
+  - Battery voltage  
+  - Soil moisture  
+  - Air humidity  
+  - Air temperature  
+- GUI desktop controller
+- Keyboard controls for easy operation
+
+---
+
+## 🛠 Requirements
+
+### Software
+- **Visual Studio 2019 / 2022**
+- **.NET 6 / .NET 8 SDK**
+- **Arduino IDE**
+
+### Hardware
+- Arduino Nano
+- HC-05 / HC-06 Bluetooth Module
+- 2WD Motor Driver (L298N or similar)
+- 4x Servo motors
+- Soil moisture sensor
+- Voltage sensor
+- DHT11 / DHT22 sensor (Humidity + Temp)
+
+---
+
+## ▶️ How to Run
+
+1. Pair your PC with the robot via **Bluetooth**
+2. Check the COM port assigned to the Bluetooth module (Device Manager)
+3. Open the desktop app
+4. Select the COM port and click connect
+5. Control the robot using the on-screen buttons or keyboard shortcuts below:
+
+### 🎮 Keyboard Controls
+
+| Function | Keys |
+|--------|------|
+Forward / Back / Left / Right | `W` `S` `A` `D`  
+Decrease / Increase Motor Speed | `Z` / `C`  
+Battery Reading | `V`  
+Soil Moisture Reading | `B`  
+Humidity Reading | `N`  
+Temperature Reading | `M`  
+
+### 🦾 Servo Arm Controls
+
+| Servo | Keys |
+|-------|-----|
+Servo 1 | `T` / `Y`  
+Servo 2 | `G` / `H`  
+Servo 3 | `U` / `I`  
+Servo 4 | `J` / `K`  
+
+---
+
+## 📥 Clone the Repository
+
+### Using Visual Studio
+1. Open **Visual Studio**
+2. Click **Clone a repository**
+3. Paste the repo link
+
+```bash
+https://github.com/YOUR_USERNAME/rc_controller.git
