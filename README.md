@@ -1,6 +1,6 @@
 # Garden Analyzer & Botanist
 A smart agricultural robot designed to monitor plant health and assist in garden automation.  
-GAB utilizes sensors, a robotic arm, and wireless control to gather environmental data and interact with plants.
+Utilizes sensors, a robotic arm, and wireless control to gather environmental data and interact with plants.
 
 ---
 
