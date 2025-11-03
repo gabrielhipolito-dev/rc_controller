@@ -1,11 +1,11 @@
-# 🌱🤖 Garden Analyzer & Botanist (GAB)
+# Garden Analyzer & Botanist (GAB)
 
 A smart agricultural robot designed to monitor plant health and assist in garden automation.  
 GAB utilizes sensors, a robotic arm, and wireless control to gather environmental data and interact with plants.
 
 ---
 
-### 👨‍💻 Developed By
+### Developed By
 - Jeff Bayhon  
 - Lance Dador  
 - Giuliano de Guzman  
@@ -13,13 +13,13 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 
 ---
 
-## 🧠 Languages Used
+## Languages Used
 - **Arduino** (Nano microcontroller firmware)
 - **C#** (Windows .NET Application)
 
 ---
 
-## ✨ Features
+## Features
 - 2-Wheel Drive movement system  
 - 4-DOF robotic servo arm  
 - Bluetooth communication (Serial)  
@@ -36,7 +36,7 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 ## 🛠 Requirements
 
 ### Software
-- **Visual Studio 2019 / 2022**
+- **Visual Studio 2022**
 - **.NET 9*
 - **Arduino IDE**
 
@@ -51,7 +51,7 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 1. Pair your PC with the robot via **Bluetooth**
 2. Check the COM port assigned to the Bluetooth module (Device Manager)
@@ -59,7 +59,7 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 4. Select the COM port and click connect
 5. Control the robot using the on-screen buttons or keyboard shortcuts below:
 
-### 🎮 Keyboard Controls
+### Keyboard Controls
 
 | Function | Keys |
 |--------|------|
@@ -70,7 +70,7 @@ Soil Moisture Reading | `B`
 Humidity Reading | `N`  
 Temperature Reading | `M`  
 
-### 🦾 Servo Arm Controls
+### Servo Arm Controls
 
 | Servo | Keys |
 |-------|-----|
@@ -80,7 +80,7 @@ Servo R (Z - ROTATION) | `U` / `I`
 
 ---
 
-## 📥 Clone the Repository
+## Clone the Repository
 
 ### Using Visual Studio
 1. Open **Visual Studio**
