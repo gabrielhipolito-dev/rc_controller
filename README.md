@@ -37,7 +37,7 @@ GAB utilizes sensors, a robotic arm, and wireless control to gather environmenta
 
 ### Software
 - **Visual Studio 2019 / 2022**
-- **.NET 6 / .NET 8 SDK**
+- **.NET 9*
 - **Arduino IDE**
 
 ### Hardware
