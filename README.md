@@ -78,13 +78,3 @@ Servo B (Y - AXIS) | `Y` / `H`
 Servo R (Z - ROTATION) | `U` / `I`  
 
 ---
-
-## Clone the Repository
-
-### Using Visual Studio
-1. Open **Visual Studio**
-2. Click **Clone a repository**
-3. Paste the repo link
-
-```bash
-https://github.com/YOUR_USERNAME/rc_controller.git
