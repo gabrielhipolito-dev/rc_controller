@@ -72,7 +72,7 @@ This project includes a robot which uses a variety of sensors & motors to measur
   └── rc_controller.csproj
 ```
 
-## Steps to Run the Program
+## Steps to Connect and the Program
 
 1. Clone the repository:
 
