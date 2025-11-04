@@ -6,62 +6,62 @@
         AllowsTransparency="False">
 
 
-    <!-- ~~~~~~~~~~~~~ Design Templates ~~~~~~~~~~~~~ -->
-    <Window.Resources>
-        <!-- Rounded Button  -->
-        <Style x:Key="RoundedHoverButton" TargetType="Button">
-            <Setter Property="Background" Value="#00979C"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="buttonBorder"
+	<!-- ~~~~~~~~~~~~~ Design Templates ~~~~~~~~~~~~~ -->
+	<Window.Resources>
+		<!-- Rounded Button  -->
+		<Style x:Key="RoundedHoverButton" TargetType="Button">
+			<Setter Property="Background" Value="#00979C"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontSize" Value="22"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="buttonBorder"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="20">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#00B5C2"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#008A91"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="buttonBorder" Property="Background" Value="#00B5C2"/>
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter TargetName="buttonBorder" Property="Background" Value="#008A91"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-        <Style x:Key="CustomComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Background" Value="#171E21"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#00979C"/>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="FontFamily" Value="Consolas"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Padding" Value="6,2"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Grid>
-                            <Border x:Name="Border"
+		<Style x:Key="CustomComboBoxStyle" TargetType="ComboBox">
+			<Setter Property="Background" Value="#171E21"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="#00979C"/>
+			<Setter Property="BorderThickness" Value="3"/>
+			<Setter Property="FontFamily" Value="Consolas"/>
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Padding" Value="6,2"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="SnapsToDevicePixels" Value="True"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ComboBox">
+						<Grid>
+							<Border x:Name="Border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="0"/>
 
-                            <Grid>
-                                <!-- Selected item text -->
-                                <ContentPresenter x:Name="ContentSite"
+							<Grid>
+								<!-- Selected item text -->
+								<ContentPresenter x:Name="ContentSite"
                                           Margin="8,0,35,0"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
@@ -70,8 +70,8 @@
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                           RecognizesAccessKey="True"/>
 
-                                <!-- Drop-down arrow -->
-                                <ToggleButton x:Name="DropDownToggle"
+								<!-- Drop-down arrow -->
+								<ToggleButton x:Name="DropDownToggle"
                                       Focusable="False"
                                       IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Background="Transparent"
@@ -82,254 +82,254 @@
                                       Width="30"
                                       Height="30"
                                       Margin="0,0,6,0">
-                                    <Path Data="M 0 0 L 4 4 L 8 0 Z"
+									<Path Data="M 0 0 L 4 4 L 8 0 Z"
                                   Fill="White"
                                   Stretch="Uniform"
                                   Width="12"
                                   Height="12"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
-                                </ToggleButton>
+								</ToggleButton>
 
-                                <!-- Popup -->
-                                <Popup x:Name="Popup"
+								<!-- Popup -->
+								<Popup x:Name="Popup"
                                Placement="Bottom"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                AllowsTransparency="True"
                                Focusable="False"
                                PopupAnimation="Slide">
-                                    <Border Background="#171E21"
+									<Border Background="#171E21"
                                     BorderBrush="#00979C"
                                     BorderThickness="2">
-                                        <ScrollViewer>
-                                            <ItemsPresenter/>
-                                        </ScrollViewer>
-                                    </Border>
-                                </Popup>
-                            </Grid>
-                        </Grid>
+										<ScrollViewer>
+											<ItemsPresenter/>
+										</ScrollViewer>
+									</Border>
+								</Popup>
+							</Grid>
+						</Grid>
 
-                        <!-- Hover and Focus states -->
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
-                            </Trigger>
-                            <Trigger Property="IsDropDownOpen" Value="True">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+						<!-- Hover and Focus states -->
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
+							</Trigger>
+							<Trigger Property="IsKeyboardFocusWithin" Value="True">
+								<Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
+							</Trigger>
+							<Trigger Property="IsDropDownOpen" Value="True">
+								<Setter TargetName="Border" Property="BorderBrush" Value="#00B5C2"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
 
 
-    </Window.Resources>
+	</Window.Resources>
 
-    <!-- ~~~~~~~~~~~~~ MAIN CANVAS ~~~~~~~~~~~~~ -->
-    <Canvas Background="#1F272A">
+	<!-- ~~~~~~~~~~~~~ MAIN CANVAS ~~~~~~~~~~~~~ -->
+	<Canvas Background="#1F272A">
 
-        <!-- Image/Shape elements -->
-        <Rectangle Height="384" Width="1280" Canvas.Top="320" Fill="#171E21" Stroke="#424242" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Rectangle Height="720" Width="341" Fill="#171E21" Stroke="#424242" StrokeThickness="2" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="939" Canvas.Top="-16"/>
-        <Image Height="326" Canvas.Left="165" Canvas.Top="16" Width="583" Source="/img/arduino_transparent.png" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+		<!-- Image/Shape elements -->
+		<Rectangle Height="384" Width="1280" Canvas.Top="320" Fill="#171E21" Stroke="#424242" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+		<Rectangle Height="720" Width="341" Fill="#171E21" Stroke="#424242" StrokeThickness="2" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="939" Canvas.Top="-16"/>
+		<Image Height="326" Canvas.Left="165" Canvas.Top="16" Width="583" Source="/img/arduino_transparent.png" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-        <!-- Connect Button -->
-        <Button Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<!-- Connect Button -->
+		<Button Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}" Click="CONNECT_BUTTON" Canvas.Left="1207" Canvas.Top="10">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/connect.png" Width="30" Height="30"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/connect.png" Width="30" Height="30"/>
+			</StackPanel>
+		</Button>
 
-        <!-- Console Textbox -->
-        <TextBox x:Name="DebugTextBox"
+		<!-- Console Textbox -->
+		<TextBox x:Name="DebugTextBox"
                  Canvas.Left="62" Canvas.Top="358" Width="446" Height="46" HorizontalAlignment="Center" VerticalAlignment="Top"
                  Background="#171E21" Foreground="White" BorderBrush="#00979C" BorderThickness="3"
                  IsReadOnly="True" Text="Waiting for data..." FontFamily="Consolas" FontSize="24" VerticalContentAlignment="Center" Padding="10,0,10,0"/>
 
-        <!-- ComboBox -->
-        <ComboBox x:Name="ComPortComboBox"
+		<!-- ComboBox -->
+		<ComboBox x:Name="ComPortComboBox"
                   Style="{StaticResource CustomComboBoxStyle}"
                   Canvas.Left="975" Canvas.Top="16" Width="218" Height="39" FontSize="14" HorizontalContentAlignment="Center"
                   Focusable="True" IsHitTestVisible="True" StaysOpenOnEdit="True" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedIndex="0">
-            <ComboBoxItem Content="--Select COM port--" IsEnabled="False"/>
-            <ComboBoxItem Content="COM1"/>
-            <ComboBoxItem Content="COM2"/>
-            <ComboBoxItem Content="COM3"/>
-            <ComboBoxItem Content="COM4"/>
-            <ComboBoxItem Content="COM5"/>
-            <ComboBoxItem Content="COM6"/>
-            <ComboBoxItem Content="COM7"/>
-            <ComboBoxItem Content="COM8"/>
-            <ComboBoxItem Content="COM9"/>
-            <ComboBoxItem Content="COM10"/>
-        </ComboBox>
+			<ComboBoxItem Content="--Select COM port--" IsEnabled="False"/>
+			<ComboBoxItem Content="COM1"/>
+			<ComboBoxItem Content="COM2"/>
+			<ComboBoxItem Content="COM3"/>
+			<ComboBoxItem Content="COM4"/>
+			<ComboBoxItem Content="COM5"/>
+			<ComboBoxItem Content="COM6"/>
+			<ComboBoxItem Content="COM7"/>
+			<ComboBoxItem Content="COM8"/>
+			<ComboBoxItem Content="COM9"/>
+			<ComboBoxItem Content="COM10"/>
+		</ComboBox>
 
 
-        <!-- Direction Control Buttons -->
-        <Grid HorizontalAlignment="Center" Height="192" Canvas.Left="228" Canvas.Top="418" VerticalAlignment="Top" Width="280">
-            <Button Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Top"
+		<!-- Direction Control Buttons -->
+		<Grid HorizontalAlignment="Center" Height="192" Canvas.Left="228" Canvas.Top="418" VerticalAlignment="Top" Width="280">
+			<Button Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     PreviewMouseLeftButtonDown="ButtonForward_Pressed" PreviewMouseLeftButtonUp="ButtonForward_Released">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/arrow-up.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/arrow-up.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
 
-            <Button Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Top"
+			<Button Width="90" Height="90" HorizontalAlignment="Center" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     PreviewMouseLeftButtonDown="ButtonBackward_Pressed" PreviewMouseLeftButtonUp="ButtonBackward_Released" Margin="0,102,0,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/arrow-down.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/arrow-down.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
 
-            <Button Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
+			<Button Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Style="{StaticResource RoundedHoverButton}"
                     PreviewMouseLeftButtonDown="ButtonLeft_Pressed" PreviewMouseLeftButtonUp="ButtonLeft_Released">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/arrow-left.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/arrow-left.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
 
-            <Button Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
+			<Button Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Style="{StaticResource RoundedHoverButton}"
                     PreviewMouseLeftButtonDown="ButtonRight_Pressed" PreviewMouseLeftButtonUp="ButtonRight_Released" Margin="190,0,0,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/arrow-right.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
-        </Grid>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/arrow-right.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
+		</Grid>
 
-        <!-- Motor Control Buttons -->
-        <Grid HorizontalAlignment="Center" Height="169" Canvas.Left="62" Canvas.Top="429" VerticalAlignment="Top">
-            <Button Width="75" Height="75" HorizontalAlignment="Center" VerticalAlignment="Top"
+		<!-- Motor Control Buttons -->
+		<Grid HorizontalAlignment="Center" Height="169" Canvas.Left="62" Canvas.Top="429" VerticalAlignment="Top">
+			<Button Width="75" Height="75" HorizontalAlignment="Center" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}" Click="MotorMinus" Margin="0,94,0,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/motor-down.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/motor-down.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
 
-            <Button Width="75" Height="76" HorizontalAlignment="Center" VerticalAlignment="Top"
+			<Button Width="75" Height="76" HorizontalAlignment="Center" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}" Click="MotorPlus">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/img/motor-up.png" Width="65" Height="65" Margin="0"/>
-                </StackPanel>
-            </Button>
-        </Grid>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Image Source="/img/motor-up.png" Width="65" Height="65" Margin="0"/>
+				</StackPanel>
+			</Button>
+		</Grid>
 
-        <!-- Servo 1 -->
-        <Button Canvas.Left="1012" Canvas.Top="160" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<!-- Servo 1 -->
+		<Button Canvas.Left="1012" Canvas.Top="160" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S1plus_press" PreviewMouseLeftButtonUp="S1plus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/arm-back.png" Width="75" Height="75" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/arm-back.png" Width="75" Height="75" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <Button Canvas.Left="1124" Canvas.Top="160" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<Button Canvas.Left="1124" Canvas.Top="160" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S1minus_press" PreviewMouseLeftButtonUp="S1minus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/arm-forward.png" Width="75" Height="75" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/arm-forward.png" Width="75" Height="75" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <!-- Servo 2 -->
-        <Button Canvas.Left="1012" Canvas.Top="303" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<!-- Servo 2 -->
+		<Button Canvas.Left="1012" Canvas.Top="303" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S2minus_press" PreviewMouseLeftButtonUp="S2minus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/arm-up.png" Width="65" Height="65" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/arm-up.png" Width="65" Height="65" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <Button Canvas.Left="1124" Canvas.Top="303" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<Button Canvas.Left="1124" Canvas.Top="303" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S2plus_press" PreviewMouseLeftButtonUp="S2plus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/arm-down.png" Width="65" Height="65" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/arm-down.png" Width="65" Height="65" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <!-- Servo 3 -->
-        <Button Canvas.Left="1124" Canvas.Top="456" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<!-- Servo 3 -->
+		<Button Canvas.Left="1012" Canvas.Top="456" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S3minus_press" PreviewMouseLeftButtonUp="S3minus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/rotate-right.png" Width="65" Height="65" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/rotate-left.png" Width="65" Height="65" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <Button Canvas.Left="1012" Canvas.Top="456" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<Button Canvas.Left="1124" Canvas.Top="456" Width="90" Height="90" HorizontalAlignment="Left" VerticalAlignment="Center"
                 Style="{StaticResource RoundedHoverButton}"
                 PreviewMouseLeftButtonDown="S3plus_press" PreviewMouseLeftButtonUp="S3plus_Released">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Source="/img/rotate-left.png" Width="65" Height="65" Margin="0"/>
-            </StackPanel>
-        </Button>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Image Source="/img/rotate-right.png" Width="65" Height="65" Margin="0"/>
+			</StackPanel>
+		</Button>
 
-        <!-- Servo 4 -->
+		<!-- Servo 4 -->
 
-        <!-- Servo Button Label -->
-        <TextBox Width="196" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"
+		<!-- Servo Button Label -->
+		<TextBox Width="196" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center"
                  Background="Transparent" Foreground="White" BorderBrush="Transparent"
                  IsReadOnly="True" Text="Servo Control" FontFamily="Consolas" FontSize="24" Canvas.Left="1016" Canvas.Top="120"/>
 
-        <Grid HorizontalAlignment="Center" Height="262" Canvas.Left="588" Canvas.Top="348" VerticalAlignment="Top" Width="320">
-            <!-- Sensor Buttons -->
-            <Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
+		<Grid HorizontalAlignment="Center" Height="262" Canvas.Left="588" Canvas.Top="348" VerticalAlignment="Top" Width="320">
+			<!-- Sensor Buttons -->
+			<Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     Content="Voltage" FontFamily="Consolas" FontSize="20"
                     Click="VOLTAGE_BUTTON"/>
 
-            <Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     Content="Soil Moisture" FontFamily="Consolas" FontSize="20"
                     Click="MOISTURE_BUTTON" Margin="0,70,0,0"/>
 
-            <Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     Content="Humidity" FontFamily="Consolas" FontSize="20"
                     Click="HUMIDITY_BUTTON" Margin="0,140,0,0"/>
 
-            <Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<Button Height="52" Width="194" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Style="{StaticResource RoundedHoverButton}"
                     Content="Temperature" FontFamily="Consolas" FontSize="20"
                     Click="TEMPERATURE_BUTTON" Margin="0,210,0,0"/>
 
-            <!-- Sensor TextBox -->
-            <TextBox x:Name="VoltageTextBox" Width="97" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<!-- Sensor TextBox -->
+			<TextBox x:Name="VoltageTextBox" Width="97" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Background="Transparent" Foreground="White" BorderBrush="Transparent"
                 IsReadOnly="True" Text="----" FontFamily="Consolas" FontSize="24" Margin="223,10,0,0"/>
 
-            <TextBox x:Name="MoistureTextBox" Width="97" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<TextBox x:Name="MoistureTextBox" Width="97" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Background="Transparent" Foreground="White"  BorderBrush="Transparent"
                 IsReadOnly="True" Text="----" FontFamily="Consolas" FontSize="24" Margin="223,80,0,0"/>
 
-            <TextBox x:Name="HumidityTextBox" Width="97" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<TextBox x:Name="HumidityTextBox" Width="97" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Background="Transparent" Foreground="White" BorderBrush="Transparent"
-                IsReadOnly="True" Text="----" FontFamily="Consolas" FontSize="24" Margin="223,150,0,0"/>
+                IsReadOnly="True" Text="----" FontFamily="Consolas" FontSize="24" Margin="223,150,0,0" TextChanged="HumidityTextBox_TextChanged"/>
 
-            <TextBox x:Name="TemperatureTextBox" Width="97" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top"
+			<TextBox x:Name="TemperatureTextBox" Width="97" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Background="Transparent" Foreground="White" BorderBrush="Transparent"
                 IsReadOnly="True" Text="----" FontFamily="Consolas" FontSize="24" Margin="223,220,0,0"/>
-        </Grid>
-        <TextBox Width="114" Height="40"
+		</Grid>
+		<TextBox Width="114" Height="40"
             Background="Transparent" Foreground="White" BorderBrush="Transparent"
             IsReadOnly="True" Text="Movement" FontFamily="Consolas" FontSize="24" Canvas.Left="311" Canvas.Top="630" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox Width="159" Height="40"
+		<TextBox Width="159" Height="40"
             Background="Transparent" Foreground="White" BorderBrush="Transparent"
             IsReadOnly="True" Text="Motor" FontFamily="Consolas" FontSize="24" Canvas.Left="20" Canvas.Top="630" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBox Width="160" Height="40"
+		<TextBox Width="160" Height="40"
             Background="Transparent" Foreground="White" BorderBrush="Transparent"
             IsReadOnly="True" Text="Sensors" FontFamily="Consolas" FontSize="24" Canvas.Left="668" Canvas.Top="630" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-    </Canvas>
-    <!-- ~~~~~~~~~~~~~ END OF CODE ~~~~~~~~~~~~~ -->
+	</Canvas>
+	<!-- ~~~~~~~~~~~~~ END OF CODE ~~~~~~~~~~~~~ -->
 </Window>

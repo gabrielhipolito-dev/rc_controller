@@ -61,6 +61,11 @@ namespace rc_controller
                 try
                 {
                     _serialPort.WriteLine(data);
+                    if (data == "b")
+                    {
+                        Thread.Sleep(150);
+                    }
+
                     Thread.Sleep(100);  // delay for arduino response
                     string newText = _serialPort.ReadLine().Trim();
                     tbox.Text = newText + addtext;
@@ -96,18 +101,18 @@ namespace rc_controller
             {
                 VoltageTextBox.Foreground = Brushes.Yellow;
             }
-            else if (7.6<=float.Parse(v))
+            else if (7.6 <= float.Parse(v))
             {
                 VoltageTextBox.Foreground = Brushes.LimeGreen;
             }
         }
         private void SoilColor(String s)
         {
-            if (float.Parse(s) < 30)
+            if (float.Parse(s) < 40)
             {
                 MoistureTextBox.Foreground = Brushes.Red;
             }
-            else if (30<=float.Parse(s))
+            else if (40 <= float.Parse(s))
             {
                 MoistureTextBox.Foreground = Brushes.RoyalBlue;
             }
@@ -173,7 +178,7 @@ namespace rc_controller
         private void S2plus_Released(object sender, RoutedEventArgs e) => SendCommand("p", DebugTextBox);
 
         // Servo 3 Control
-        private void S3minus_press(object sender, RoutedEventArgs e) => SendCommand("u" , DebugTextBox);
+        private void S3minus_press(object sender, RoutedEventArgs e) => SendCommand("u", DebugTextBox);
         private void S3minus_Released(object sender, RoutedEventArgs e) => SendCommand("p", DebugTextBox);
         private void S3plus_press(object sender, RoutedEventArgs e) => SendCommand("i", DebugTextBox);
         private void S3plus_Released(object sender, RoutedEventArgs e) => SendCommand("p", DebugTextBox);
@@ -226,6 +231,11 @@ namespace rc_controller
                 case Key.U: S3minus_Released(sender, new RoutedEventArgs()); break;
                 case Key.I: S3plus_Released(sender, new RoutedEventArgs()); break;
             }
+        }
+
+        private void HumidityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         /* ------------- END OF CODE ------------- */
