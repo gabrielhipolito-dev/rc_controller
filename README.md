@@ -89,7 +89,7 @@ cd rc_controller
    * Select processor: `ATmega328P (Old Bootloader)` (for CH340)
    * Select COM port (example: COM5)
    * Click **Upload**
-3. Run the Desktop Application:
+3. Run the Application(Visual Studio):
 
    * Open `rc_controller.csproj` in Visual Studio
    * Open `MainWindow.xaml`
