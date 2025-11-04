@@ -1,6 +1,5 @@
 # Garden Analyzer & Botanist
-A smart agricultural robot designed to monitor plant health and assist in garden automation.  
-Utilizes sensors, a robotic arm, and wireless control to gather environmental data and interact with plants.
+This project includes a robot which uses a variety of sensors & motors to measure and provide data from your garden plants, as well as a user interface for communicating and controlling the robot.
 
 ---
 
@@ -68,8 +67,8 @@ Utilizes sensors, a robotic arm, and wireless control to gather environmental da
 
 | Function | Keys |
 |--------|------|
-Forward / Back / Left / Right | `W` `S` `A` `D`  
-Decrease / Increase Motor Speed | `Z` / `C`  
+Forward / Back / Left / Right (For Motor Movement) | `W` `S` `A` `D`  
+Decrease Motor Speed / Increase Motor Speed | `Z` / `C`  
 Battery Reading | `V`  
 Soil Moisture Reading | `B`  
 Humidity Reading | `N`  
