@@ -33,7 +33,7 @@ This project includes a robot which uses a variety of sensors & motors to measur
 
 ---
 
-## 🛠 Requirements
+## Requirements
 
 ### Software
 - **Visual Studio 2022**
