@@ -1,4 +1,4 @@
-# A Bluetooth-controlled robotic car designed to assist gardeners/elders/ by analyzing soil moisture, humidity, and temperature for real-time plant health monitoring.
+# A Bluetooth-controlled robotic car designed to assist elders and gardeners by analyzing soil moisture, humidity, and temperature for real-time plant health monitoring.
 This project includes a robot which uses a variety of sensors & motors to measure and provide data from your garden plants, as well as a user interface for communicating and controlling the robot.
 
 ---
