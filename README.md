@@ -1,7 +1,9 @@
-# A Bluetooth-controlled robotic car designed to assist elders and gardeners by analyzing soil moisture, humidity, and temperature for real-time plant health monitoring.
+# Garden Analyzer & Botanist (GAB)
+
 This project includes a robot which uses a variety of sensors & motors to measure and provide data from your garden plants, as well as a user interface for communicating and controlling the robot.
 
 ---
+
 
 ### Developed By
 - Jeff Bayhon  
@@ -55,7 +57,56 @@ This project includes a robot which uses a variety of sensors & motors to measur
 
 ---
 
-## How to Run
+##  Folder Structure
+
+```
+/rc_controller
+  └── /ARDUINO_NANO
+      └── lupa_tusok_updated_ver.ino
+  └── /img
+  └── app.xaml
+  └── app.xaml.cs
+  └── AssemblyInfo.cs
+  └── MainWindow.xaml
+  └── MainWindow.xaml.cs
+  └── rc_controller.csproj
+```
+
+## Steps to Run the Program
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/YourRepoHere/rc_controller.git
+cd rc_controller
+```
+
+2. Upload Arduino:
+
+   * Open `/ARDUINO_NANO/lupa_tusok_updated_ver.ino` in Arduino IDE
+   * Connect Arduino Nano via USB
+   * Select board: `Tools → Board → Arduino Nano`
+   * Select processor: `ATmega328P (Old Bootloader)` (for CH340)
+   * Select COM port (example: COM5)
+   * Click **Upload**
+3. Run the Desktop Application:
+
+   * Open `rc_controller.csproj` in Visual Studio
+   * Open `MainWindow.xaml`
+   * Click **Start / Run** to launch the app
+4. Connect to the RC Car:
+
+   * Select Bluetooth COM port in the app
+   * Click **Connect**
+   * Use the GUI to drive the robot and monitor sensor data
+
+## Notes
+
+* Ensure the robot is powered **before** connecting the app
+* Use correct COM port for Bluetooth (not USB after upload)
+* Place soil sensor in the plant soil for accurate readings
+
+## How to Run 
 
 1. Pair your PC with the robot via **Bluetooth**
 2. Check the COM port assigned to the Bluetooth module (Device Manager)
@@ -83,3 +134,6 @@ Servo B (Y - AXIS) | `Y` / `H`
 Servo R (Z - ROTATION) | `U` / `I`  
 
 ---
+
+
+
