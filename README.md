@@ -3,6 +3,12 @@
 This project includes a robot which uses a variety of sensors & motors to measure and provide data from your garden plants, as well as a user interface for communicating and controlling the robot.
 
 ---
+
+##  Visual Overview of GAB Project
+
+### WPF User Interface (UI)
+<br>
+
 <p align="center">
   <img src="images/GUI_GAB.png" alt="WPF User Interface for Robot Control & Plant Monitoring" width="500">
   <br>
@@ -11,10 +17,13 @@ This project includes a robot which uses a variety of sensors & motors to measur
 </p>
 <br><br>
 
+### GAB  Overview
+<br>
+
 <p align="center">
     <img src="images/GAB.png" alt="View of Garden Assistant Bot (GAB)" width="500">
   <br>
-  <em>Fig. 2 — VIEWGarden Assistant Bot (GAB) Hardware</em><br>
+  <em>Fig. 2 — VIEW Garden Assistant Bot (GAB) Hardware</em><br>
   This figure displays the GAB, showing the sensor placements and main control board.
 </p>
 <br>
