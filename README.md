@@ -65,19 +65,19 @@ This project includes a robot which uses a variety of sensors & motors to measur
 - **Arduino IDE**
 
 ### Hardware
-- Arduino Nano ch340
-- HC-05 / HC-06 Bluetooth Module
-- 2WD Motor Driver (L298N or similar)
-- 4x Servo motors
-- Soil moisture sensor
-- Voltage sensor
-- DHT11 / DHT22 sensor (Humidity + Temp)
-- l298N H-Bridge Driver
-- HC-05 Bluetooth Module
-- HW-103 soil moisture sensor
-- 2s battery holder
-- Toggle Switch
-- Jumper Wires
+- Arduino Nano CH340 
+- HC-05 Bluetooth Module 
+- L298N Motor Driver 
+- 3x MG996R Servo Motor 
+- Voltage Sensor Module 
+- DHT22 Sensor 
+- L298N H-Bridge Driver
+- HW-080 soil moisture sensor 
+- 2x 18650 Battery Cell
+- 2 cell 18650 battery holder
+- Toggle Switch 
+- Jumper Wires 
+
 
 ---
 
