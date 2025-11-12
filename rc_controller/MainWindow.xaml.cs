@@ -52,6 +52,7 @@ namespace rc_controller
                         MessageBox.Show("Serial port opened successfully!");
                         isConnected = true;
                         click_button.Background = new SolidColorBrush(Colors.Red);
+                        //baguhin mo lance yun link sa image 
                         disconnect_image.Source = new BitmapImage(new Uri("../img/minus.png", UriKind.RelativeOrAbsolute));
                     }
                     else
@@ -62,7 +63,7 @@ namespace rc_controller
                         "Confirm Disconnection",      
                         MessageBoxButton.YesNo,       
                         MessageBoxImage.Question
-                    );
+                        );
 
                         if (result == MessageBoxResult.Yes)
                         {
@@ -72,8 +73,6 @@ namespace rc_controller
                             MessageBox.Show("Serial port disconnected successfully!");
                             click_button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00979C"));
                             disconnect_image.Source = new BitmapImage(new Uri("../img/connect.png", UriKind.RelativeOrAbsolute));
-
-
                             isConnected = false;
                         }
                     }
