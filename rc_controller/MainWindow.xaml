@@ -139,10 +139,12 @@
 		<Image Height="326" Canvas.Left="165" Canvas.Top="16" Width="583" Source="/img/arduino_transparent.png" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
 		<!-- Connect Button -->
-		<Button Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <Button x:Name="click_button"
+                Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Style="{StaticResource RoundedHoverButton}" Click="CONNECT_BUTTON" Canvas.Left="1207" Canvas.Top="10">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-				<Image Source="/img/connect.png" Width="30" Height="30"/>
+				<Image x:Name="disconnect_image"
+                    Source="/img/connect.png" Width="30" Height="30"/>
 			</StackPanel>
 		</Button>
 

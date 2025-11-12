@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace rc_controller
 {
@@ -23,27 +24,64 @@ namespace rc_controller
 
 
         /* ------------- SERIAL CONNECTION ------------- */
+        bool isConnected = false;
+        bool disconnect = false;
         private void InitializeSerialPort(string comport)
         {
+
             if (comport != "--Select COM port--")
             {
-                _serialPort = new SerialPort
-                {
-                    PortName = comport,
-                    BaudRate = 9600,
-                    Parity = Parity.None,
-                    DataBits = 8,
-                    StopBits = StopBits.One
-                };
-                // test if connection can be made
                 try
                 {
-                    _serialPort.Open();
-                    MessageBox.Show("Serial port opened successfully!");
+                    if (comport == "COM4"){
+                        MessageBox.Show($"Operation failed: {comport}");
+                        return; }
+                    if (!isConnected)
+                    {
+                        _serialPort = new SerialPort
+                        {
+                            PortName = comport,
+                            BaudRate = 9600,
+                            Parity = Parity.None,
+                            DataBits = 8,
+                            StopBits = StopBits.One
+                        };
+
+                        _serialPort.Open();
+
+                        MessageBox.Show("Serial port opened successfully!");
+                        isConnected = true;
+                        click_button.Background = new SolidColorBrush(Colors.Red);
+                        disconnect_image.Source = new BitmapImage(new Uri("../img/minus.png", UriKind.RelativeOrAbsolute));
+                    }
+                    else
+                    {
+                        string pop_up = "Do you want to disconnect";
+                        MessageBoxResult result = MessageBox.Show(
+                        pop_up,                     
+                        "Confirm Disconnection",      
+                        MessageBoxButton.YesNo,       
+                        MessageBoxImage.Question
+                    );
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            _serialPort.Close();
+                            _serialPort.Dispose();
+                            _serialPort = null;
+                            MessageBox.Show("Serial port disconnected successfully!");
+                            click_button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00979C"));
+                            disconnect_image.Source = new BitmapImage(new Uri("../img/connect.png", UriKind.RelativeOrAbsolute));
+
+
+                            isConnected = false;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Failed to open serial port: {ex.Message}");
+
+                    MessageBox.Show($"Operation failed: {ex.Message}");
                 }
             }
             else
@@ -93,15 +131,15 @@ namespace rc_controller
         /* ------------- TEXTBOX COLOR CHANGER ------------- */
         private void VoltageColor(String v)
         {
-            if (float.Parse(v) < 7.2)
+            if (float.Parse(v) < 7.0)
             {
                 VoltageTextBox.Foreground = Brushes.Red;
             }
-            else if (7.2 <= float.Parse(v) && float.Parse(v) < 7.6)
+            else if (7.0 <= float.Parse(v) && float.Parse(v) < 7.4)
             {
                 VoltageTextBox.Foreground = Brushes.Yellow;
             }
-            else if (7.6 <= float.Parse(v))
+            else if (7.4 <= float.Parse(v))
             {
                 VoltageTextBox.Foreground = Brushes.LimeGreen;
             }
